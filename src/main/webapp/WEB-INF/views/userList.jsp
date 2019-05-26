@@ -10,15 +10,36 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
+    <script src="<c:url value="/webjars/jquery/3.0.0/jquery.min.js"/>"></script>
+    <script src="<c:url value="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"/>"></script>
+    <link href="<c:url value="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>" rel="stylesheet">
+    <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
     <title>User List</title>
 </head>
 <body>
 
-<h1>all users</h1>
+<h3>all users:</h3>
 
-<c:forEach items="${users}" var="user" varStatus="theCount">
-    Imie: ${user.firstName}  , Nazwisko: ${user.lastName} , <br>
-</c:forEach>
+
+<div style="width: 50%">
+    <table class="table table-hover">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">imię</th>
+            <th scope="col">nazwisko</th>
+        </tr>
+
+        <c:forEach items="${users}" var="user" varStatus="theCount">
+            <tr>
+                <td scope="row">${user.id}</td>
+                <td scope="row">${user.firstName}</td>
+                <td scope="row">${user.lastName}</td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
+
+
 
 </body>
 </html>
