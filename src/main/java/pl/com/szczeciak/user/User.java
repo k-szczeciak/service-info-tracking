@@ -9,6 +9,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "user")
 public class User {
+//    public enum permitions { DEVELOPER, MANAGER, MASTER_USER, OFFICE, WORKSHOP_MANAGER, }
+//    public enum Permition { CREATE, EDIT, VIEW, DELETE};
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +25,20 @@ public class User {
     @NotBlank
     @Email
     private String email;
+
+    /*
+        - one user to several stations
+        - permition is only assignet to the corresponding station/s
+        - todo entity for permitions
+        - at the beginning one person is dedicated for one station and only for this one will have permition to edit
+         for other only view and leave a comments
+     */
+    @NotNull
+    private Long station_id; //OneToMany relation  -assignment of one person to station - at the beginning one2one
+
+/* this is saved for future permition entity*/
+//    @NotNull
+//    private Permition permition;
 
     public User() {
     }

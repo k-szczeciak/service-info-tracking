@@ -15,5 +15,10 @@
 <body>
 Home Page
 
+<form:form method="post" modelAttribute="article">
+    <input type="file" id="myFile" path = "file">
+    <input type="button" value="dodaj">
+</form>
+
 </body>
 </html>
