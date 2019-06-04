@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofszczeciak
-  Date: 25/05/2019
-  Time: 15:11
+  Date: 04/06/2019
+  Time: 18:30
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,10 +14,9 @@
     <script src="<c:url value="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"/>"></script>
     <link href="<c:url value="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
-    <title>User List</title>
+    <title>Item Show</title>
 </head>
 <body>
-
 
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -111,25 +110,17 @@
 <br>
 <br>
 
-<div style="width: 80%" class="container">
-    <table class="table table-hover">
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">imię</th>
-            <th scope="col">nazwisko</th>
-            <th scope="col">...</th>
-        </tr>
-
-        <c:forEach items="${users}" var="user" varStatus="theCount">
-            <tr>
-                <td scope="row">${user.id}</td>
-                <td scope="row">${user.firstName}</td>
-                <td scope="row">${user.lastName}</td>
-                <td scope="row"><a href = # > View </a> <a href = # > edit </a></td>
-            </tr>
-        </c:forEach>
-    </table>
+<div class = "container" style="width: auto; alignment: center; display: inline-block ">
+    <ul class="list-group">
+        <li class="list-group-item">Item name: ${items[0].name}</li>
+        <li class="list-group-item">Item mnr: ${items[0].mnr}</li>
+        <li class="list-group-item">Item customer: ${items[0].customer}</li>
+        <li class="list-group-item">Item sn: ${items[0].sn}</li>
+        <li class="list-group-item">Item fd: ${items[0].fd}</li>
+        <li class="list-group-item">Item status: ${items[0].status}</li>
+    </ul>
 </div>
+
 
 
 

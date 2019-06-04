@@ -127,7 +127,7 @@
                 <td scope="row">${item.name}</td>
                 <td scope="row">${item.mnr}</td>
                 <td scope="row">${item.fd}</td>
-                <td scope="row"><a href = "#"> View </a><a href = "#"> Edit </a></td>
+                <td scope="row"><a href = "/items/show/${item.id}"> View </a><a href = "#"> Edit </a></td>
             </tr>
         </c:forEach>
     </table>

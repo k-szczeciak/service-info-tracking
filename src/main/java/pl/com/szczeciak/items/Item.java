@@ -63,6 +63,14 @@ public class Item {
         this.mnr = mnr;
     }
 
+    public String getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
     public String getSn() {
         return sn;
     }
