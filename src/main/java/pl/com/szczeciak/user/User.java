@@ -2,9 +2,11 @@ package pl.com.szczeciak.user;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import pl.com.szczeciak.operation.Operation;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -26,6 +28,18 @@ public class User {
     @Email
     private String email;
 
+    @OneToMany(mappedBy = "user")
+    private List<Operation> operations;
+
+    @NotNull
+    private Long station_id; //OneToMany relation  -assignment of one person to station - at the beginning one2one
+
+
+
+
+
+
+
     /*
         - one user to several stations
         - permition is only assignet to the corresponding station/s
@@ -33,8 +47,9 @@ public class User {
         - at the beginning one person is dedicated for one station and only for this one will have permition to edit
          for other only view and leave a comments
      */
-    @NotNull
-    private Long station_id; //OneToMany relation  -assignment of one person to station - at the beginning one2one
+
+
+
 
 /* this is saved for future permition entity*/
 //    @NotNull

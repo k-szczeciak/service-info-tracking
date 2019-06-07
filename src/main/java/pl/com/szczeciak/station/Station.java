@@ -1,7 +1,11 @@
 package pl.com.szczeciak.station;
 
+import pl.com.szczeciak.items.Item;
+import pl.com.szczeciak.operation.Operation;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "stations")
@@ -19,6 +23,13 @@ public class Station {
     private int capacity; //capacity in numer of simultanous operations
 
     private Long user_id; // relation one2one at first approach
+
+    @OneToMany(mappedBy = "station", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Item> items;
+
+    @OneToMany(mappedBy = "station")
+    private List<Operation> operations;
+
 
     public Station() {
     }

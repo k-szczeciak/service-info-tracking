@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofszczeciak
-  Date: 25/05/2019
-  Time: 14:29
+  Date: 06/06/2019
+  Time: 22:18
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -10,11 +10,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
+
     <script src="<c:url value="/webjars/jquery/3.0.0/jquery.min.js"/>"></script>
     <script src="<c:url value="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"/>"></script>
     <link href="<c:url value="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
-    <title>Home</title>
+    <title>Station Add</title>
 </head>
 <body>
 
@@ -37,7 +38,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/items/all">All Items</a>
                         <a class="dropdown-item" href="#">My Items</a>
-                        <a class="dropdown-item" href="/items/add">New Item</a>
+                        <a class="dropdown-item" href="#">New Item</a>
                     </div>
                 </li>
 
@@ -47,7 +48,6 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">All Stations</a>
-                        <a class="dropdown-item" href="/stations/add">Add Station</a>
                         <c:forEach items="${stations}" var="station" varStatus="theCount">
                             <a class="dropdown-item" href="#">${station.name}</a>
                         </c:forEach>
@@ -111,47 +111,21 @@
 <br>
 <br>
 
-<%--<div style="width: 80%" class="container">
-    Stations:
-    <table class="table table-hover">
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">name</th>
-            <th scope="col">localization</th>
-            <th scope="col">capacity</th>
-            <th scope="col">...</th>
-        </tr>
-
-        <c:forEach items="${stations}" var="station" varStatus="theCount">
-            <tr>
-                <td scope="row">${station.id}</td>
-                <td scope="row">${station.name}</td>
-                <td scope="row">${station.localization}</td>
-                <td scope="row">${station.capacity}</td>
-                <td scope="row"><a href = "#">View</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</div>--%>
 
 
-<%--<c:forEach items="${stations}" var="station"  varStatus="varStatus" >
-    <div class="container">
-            ${station.name}, ${varStatus.index},
-        &lt;%&ndash;<c:forEach items="${itemArray[${varStatus.index}]}" var="item" varStatus="theCount">
-            <li class="list-group-item">${item.name}</li>
-        </c:forEach>&ndash;%&gt;
-    </div>
-</c:forEach>--%>
 <div class="container">
-    <c:forEach items="${itemArray}" var = "items" varStatus="varStatus">
-        <div class = "container" style = "width: 22em; display: inline-block; vertical-align: top;">
-            <li class="list-group-item active">${stations[varStatus.index].name}</li>
-            <c:forEach items="${items}" var = "item">
-                <li class="list-group-item">${item.id}, ${item.mnr}, ${item.name}, <a href = "/items/show/${item.id}"> View </a></li>
-            </c:forEach><br>
-        </div>
-    </c:forEach>
+    <form:form method="post" modelAttribute="station">
+        Name:
+        <form:input path="name" />
+
+        Localization:
+        <form:input path="localization" />
+
+        capacity:
+        <form:input path="capacity" />
+
+        <input type="submit" value="Save" />
+    </form:form>
 </div>
 
 </body>

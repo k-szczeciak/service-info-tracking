@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofszczeciak
-  Date: 04/06/2019
-  Time: 18:30
+  Date: 07/06/2019
+  Time: 17:22
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,7 +14,7 @@
     <script src="<c:url value="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"/>"></script>
     <link href="<c:url value="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
-    <title>Item Show</title>
+    <title>Add Item</title>
 </head>
 <body>
 
@@ -110,19 +110,23 @@
 <br>
 <br>
 
-<div class = "container" style="width: auto; alignment: center; display: inline-block ">
-    <ul class="list-group">
-        <li class="list-group-item">Item name: ${items[0].name}</li>
-        <li class="list-group-item">Item mnr: ${items[0].mnr}</li>
-        <li class="list-group-item">Item customer: ${items[0].customer}</li>
-        <li class="list-group-item">Item sn: ${items[0].sn}</li>
-        <li class="list-group-item">Item fd: ${items[0].fd}</li>
-        <li class="list-group-item">Item status: ${items[0].status}</li>
-    </ul>
+
+
+
+<div class="container">
+    <form:form method="post" modelAttribute="item">
+        Name:
+        <form:input path="name" class="form-control" /><br>
+        MNR:
+        <form:input path="mnr" class="form-control" /><br>
+        sn:
+        <form:input path="sn" class="form-control" /><br>
+        customer:
+        <form:input path="customer" class="form-control" /><br>
+
+        <input type="submit" value="Save" />
+    </form:form>
 </div>
-
-
-
 
 </body>
 </html>

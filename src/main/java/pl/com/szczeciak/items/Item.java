@@ -1,8 +1,12 @@
 package pl.com.szczeciak.items;
 
+import pl.com.szczeciak.operation.Operation;
+import pl.com.szczeciak.station.Station;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "items")
@@ -21,19 +25,38 @@ public class Item {
     @NotNull
     private String sn;
 
-    @NotNull
+//    @NotNull
     private LocalDateTime fd;
 
     private String customer; // todo: implement customer table hence here should be customer_id instead;
 
-    private String status; // ToDo: status should be switched for enum
+    @ManyToOne
+    @JoinColumn(name = "station_id")
+    private Station station;
 
-    public String getStatus() {
-        return status;
+    @OneToMany(mappedBy = "item")
+    private List<Operation> operations;
+
+    @PrePersist
+    public void prePersist() {
+        fd = LocalDateTime.now();
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+
+
+
+
+
+
+
+
+
+    public Station getStation() {
+        return station;
+    }
+
+    public void setStation(Station station) {
+        this.station = station;
     }
 
     public Item() {

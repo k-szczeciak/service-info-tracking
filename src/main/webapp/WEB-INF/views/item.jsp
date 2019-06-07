@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofszczeciak
-  Date: 25/05/2019
-  Time: 14:29
+  Date: 04/06/2019
+  Time: 18:30
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,7 +14,8 @@
     <script src="<c:url value="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"/>"></script>
     <link href="<c:url value="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
-    <title>Home</title>
+    <script type="text/javascript" src="/resources/js/qrcode.js"></script>
+    <title>Item Show</title>
 </head>
 <body>
 
@@ -37,7 +38,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/items/all">All Items</a>
                         <a class="dropdown-item" href="#">My Items</a>
-                        <a class="dropdown-item" href="/items/add">New Item</a>
+                        <a class="dropdown-item" href="#">New Item</a>
                     </div>
                 </li>
 
@@ -47,7 +48,6 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">All Stations</a>
-                        <a class="dropdown-item" href="/stations/add">Add Station</a>
                         <c:forEach items="${stations}" var="station" varStatus="theCount">
                             <a class="dropdown-item" href="#">${station.name}</a>
                         </c:forEach>
@@ -111,48 +111,92 @@
 <br>
 <br>
 
-<%--<div style="width: 80%" class="container">
-    Stations:
-    <table class="table table-hover">
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">name</th>
-            <th scope="col">localization</th>
-            <th scope="col">capacity</th>
-            <th scope="col">...</th>
-        </tr>
+<div class = "container">
+    <img src="http://lorempixel.com/256/256/transport" class = "rounded float-right" alt="...">
 
-        <c:forEach items="${stations}" var="station" varStatus="theCount">
+
+    <div class="container" id="qrcode1"></div><br>
+
+
+</div>
+
+
+<div class="container">
+    <form:form method="post" modelAttribute="item">
+        id:
+        <form:input path="id" class="form-control" value="${items[0].id}" /><br>
+        Name:
+        <form:input path="name" class="form-control" value="${items[0].name}" /><br>
+        MNR:
+        <form:input path="mnr" class="form-control" value="${items[0].mnr}"/><br>
+        sn:
+        <form:input path="sn" class="form-control" value="${items[0].sn}"/><br>
+        customer:
+        <form:input path="customer" class="form-control" value="${items[0].customer}"/><br>
+        <div class="form-group">
+            <label for="station_id">Stations:</label>
+            <form:select path="station.id" items="${stations}" itemLabel="name" itemValue="id"
+                         class="form-control" id="station_id"/>
+        </div>
+        <input type="submit" value="Save" />
+    </form:form>
+</div>
+
+
+<br>
+<div class = "container">
+
+    <div style="width: 80%" class="container">
+        <table class="table table-hover">Operations:
             <tr>
-                <td scope="row">${station.id}</td>
-                <td scope="row">${station.name}</td>
-                <td scope="row">${station.localization}</td>
-                <td scope="row">${station.capacity}</td>
-                <td scope="row"><a href = "#">View</a></td>
+                <th scope="col">created</th>
+                <th scope="col">item</th>
+                <th scope="col">user</th>
+                <th scope="col">station</th>
             </tr>
-        </c:forEach>
-    </table>
+
+            <c:forEach items="${operations}" var="operation" varStatus="theCount">
+                <tr>
+                    <td scope="row">${operation.created}</td>
+                    <td scope="row">${operation.item.id}</td>
+                    <td scope="row">${operation.user.firstName}, ${operation.user.lastName}</td>
+                    <td scope="row">${operation.station.name}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+<%-- todo docs and comments
+<div class = "container">
+    Docs:
+
+</div>
+
+<div class = "container">
+    Comments:
+
 </div>--%>
 
 
-<%--<c:forEach items="${stations}" var="station"  varStatus="varStatus" >
-    <div class="container">
-            ${station.name}, ${varStatus.index},
-        &lt;%&ndash;<c:forEach items="${itemArray[${varStatus.index}]}" var="item" varStatus="theCount">
-            <li class="list-group-item">${item.name}</li>
-        </c:forEach>&ndash;%&gt;
-    </div>
-</c:forEach>--%>
-<div class="container">
-    <c:forEach items="${itemArray}" var = "items" varStatus="varStatus">
-        <div class = "container" style = "width: 22em; display: inline-block; vertical-align: top;">
-            <li class="list-group-item active">${stations[varStatus.index].name}</li>
-            <c:forEach items="${items}" var = "item">
-                <li class="list-group-item">${item.id}, ${item.mnr}, ${item.name}, <a href = "/items/show/${item.id}"> View </a></li>
-            </c:forEach><br>
-        </div>
-    </c:forEach>
-</div>
 
+
+
+<script>
+    //var qrcode = new QRCode("qrcode1");
+    var qrcode = new QRCode("qrcode1", {
+        text: "localhost:8080/items/show/${items[0].id}",
+        width: 256,
+        height: 256,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+    });
+    //qrcode.makeCode("www.prezentacje.szczeciak.com.pl");
+</script>
 </body>
 </html>

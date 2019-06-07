@@ -115,18 +115,18 @@
         <tr>
             <th scope="col">id</th>
             <th scope="col">created</th>
-            <th scope="col">item_id</th>
-            <th scope="col">user_id</th>
-            <th scope="col">station_id</th>
+            <th scope="col">item id</th>
+            <th scope="col">user name</th>
+            <th scope="col">station name</th>
         </tr>
 
         <c:forEach items="${operations}" var="operation" varStatus="theCount">
             <tr>
                 <td scope="row">${operation.id}</td>
                 <td scope="row">${operation.created}</td>
-                <td scope="row">${operation.item_id}</td>
-                <td scope="row">${operation.user_id}</td>
-                <td scope="row">${operation.station_id}</td>
+                <td scope="row">${operation.item.id}</td>
+                <td scope="row">${operation.user.firstName}</td>
+                <td scope="row">${operation.station.name}</td>
             </tr>
         </c:forEach>
     </table>

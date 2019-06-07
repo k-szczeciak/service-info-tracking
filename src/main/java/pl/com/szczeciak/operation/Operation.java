@@ -1,6 +1,8 @@
 package pl.com.szczeciak.operation;
 
+import pl.com.szczeciak.items.Item;
 import pl.com.szczeciak.station.Station;
+import pl.com.szczeciak.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,12 +15,18 @@ public class Operation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long user_id;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    private Long item_id;
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
 
-    private Long station_id; // todo should be replaced with enum and connected with item somehow
-    //relation one2many
+    @ManyToOne
+    @JoinColumn(name = "station_id")
+    private Station station;
+
 
     private LocalDateTime created;
 
@@ -26,6 +34,15 @@ public class Operation {
     public void prePersist() {
         created = LocalDateTime.now();
     }
+
+
+
+
+
+
+
+
+
 
 
     public Operation() {
@@ -39,28 +56,29 @@ public class Operation {
         this.id = id;
     }
 
-    public Long getUser_id() {
-        return user_id;
+
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getItem_id() {
-        return item_id;
+    public Item getItem() {
+        return item;
     }
 
-    public void setItem_id(Long item_id) {
-        this.item_id = item_id;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
-    public Long getStation_id() {
-        return station_id;
+    public Station getStation() {
+        return station;
     }
 
-    public void setStation_id(Long station_id) {
-        this.station_id = station_id;
+    public void setStation(Station station) {
+        this.station = station;
     }
 
     public LocalDateTime getCreated() {

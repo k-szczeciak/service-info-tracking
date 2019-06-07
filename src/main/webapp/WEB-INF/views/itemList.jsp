@@ -118,6 +118,7 @@
             <th scope="col">name</th>
             <th scope="col">mnr</th>
             <th scope="col">fd</th>
+            <th scope="col">station id</th>
             <th scope="col">...</th>
         </tr>
 
@@ -127,7 +128,8 @@
                 <td scope="row">${item.name}</td>
                 <td scope="row">${item.mnr}</td>
                 <td scope="row">${item.fd}</td>
-                <td scope="row"><a href = "/items/show/${item.id}"> View </a><a href = "#"> Edit </a></td>
+                <td scope="row">${item.station.id}</td>
+                <td scope="row"><a href = "/items/show/${item.id}"> View </a></td>
             </tr>
         </c:forEach>
     </table>
