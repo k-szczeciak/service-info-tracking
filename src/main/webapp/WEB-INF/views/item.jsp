@@ -165,8 +165,39 @@
             </c:forEach>
         </table>
     </div>
-</div>
+</div><br>
 
+<br>
+<div class = "container">
+
+    <div style="width: 80%" class="container">
+        <table class="table table-hover">Comments:
+            <tr>
+                <th scope="col">created</th>
+                <th scope="col">text</th>
+            </tr>
+
+            <c:forEach items="${comments}" var="comment" varStatus="theCount">
+                <tr>
+                    <td scope="row">${comment.created}</td>
+                    <td scope="row">${comment.description}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+</div>
+<br><br>
+
+
+<div class="container">
+    <form:form method="post" modelAttribute="comment">
+        <div class="form-group">
+            New Comment:
+            <textarea class="form-control" path="description" rows="3"></textarea>
+        </div>
+        <input type="submit" value="do not press" />
+    </form:form>
+</div>
 
 
 

@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.com.szczeciak.comment.Comment;
+import pl.com.szczeciak.comment.CommentRepository;
+import pl.com.szczeciak.doc.DocRepository;
 import pl.com.szczeciak.operation.Operation;
 import pl.com.szczeciak.operation.OperationRepository;
 import pl.com.szczeciak.station.Station;
@@ -30,6 +33,12 @@ public class ItemController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    CommentRepository commentRepository;
+
+    @Autowired
+    DocRepository docRepository;
+
     @GetMapping("/all")
     public String showAllItems(Model model){
         List<Item> items = itemRepository.findAll();
@@ -48,6 +57,11 @@ public class ItemController {
 
         Item item = new Item();
         model.addAttribute("item", item);
+
+        List<Comment> comments = commentRepository.findAllByItemId(id);
+        model.addAttribute("comments", comments);
+
+
         return "item";
     }
 
@@ -62,6 +76,7 @@ public class ItemController {
         operation.setStation(item.getStation());
         operation.setUser(userRepository.findById((long) 1));
         operationRepository.save(operation);
+
 
         return "redirect: /";
     }

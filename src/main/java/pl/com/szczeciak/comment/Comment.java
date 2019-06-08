@@ -1,5 +1,7 @@
 package pl.com.szczeciak.comment;
 
+import pl.com.szczeciak.items.Item;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -19,6 +21,10 @@ public class Comment {
     @NotNull
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
+
     private LocalDateTime created;
 
     @PrePersist
@@ -27,6 +33,14 @@ public class Comment {
     }
 
     public Comment() {
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public Long getId() {

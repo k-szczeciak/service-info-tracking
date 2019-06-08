@@ -1,5 +1,7 @@
 package pl.com.szczeciak.doc;
 
+import pl.com.szczeciak.items.Item;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -20,6 +22,10 @@ public class Doc {
 
     private String docType;//todo eum for doc types
 
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
+
     private LocalDateTime created;
 
     @PrePersist
@@ -28,6 +34,14 @@ public class Doc {
     }
 
     public Doc() {
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public Long getId() {

@@ -1,5 +1,7 @@
 package pl.com.szczeciak.items;
 
+import pl.com.szczeciak.comment.Comment;
+import pl.com.szczeciak.doc.Doc;
 import pl.com.szczeciak.operation.Operation;
 import pl.com.szczeciak.station.Station;
 
@@ -37,19 +39,41 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private List<Operation> operations;
 
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "item")
+    private List<Doc> docs;
+
     @PrePersist
     public void prePersist() {
         fd = LocalDateTime.now();
     }
 
 
+    public List<Operation> getOperations() {
+        return operations;
+    }
 
+    public void setOperations(List<Operation> operations) {
+        this.operations = operations;
+    }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
 
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
+    public List<Doc> getDocs() {
+        return docs;
+    }
 
-
-
+    public void setDocs(List<Doc> docs) {
+        this.docs = docs;
+    }
 
     public Station getStation() {
         return station;
