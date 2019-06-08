@@ -82,7 +82,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/comments/all">All Comments</a>
                         <a class="dropdown-item" href="#">My Comments</a>
-                        <a class="dropdown-item" href="#">New Comment</a>
+                        <a class="dropdown-item" href="/comments/add">New Comment</a>
                     </div>
                 </li>
 

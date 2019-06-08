@@ -118,6 +118,7 @@
             <th scope="col">id</th>
             <th scope="col">created</th>
             <th scope="col">description</th>
+            <th scope="col">item id</th>
         </tr>
 
         <c:forEach items="${comments}" var="comment" varStatus="theCount">
@@ -125,6 +126,7 @@
                 <td scope="row">${comment.id}</td>
                 <td scope="row">${comment.created}</td>
                 <td scope="row">${comment.description}</td>
+                <td scope="row">${comment.item.id}</td>
             </tr>
         </c:forEach>
     </table>
