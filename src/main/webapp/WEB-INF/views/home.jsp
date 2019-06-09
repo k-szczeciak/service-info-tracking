@@ -152,6 +152,16 @@
             </c:forEach><br>
         </div>
     </c:forEach>
+    <br>
+    <br>
+    <%--other solution:
+    <c:forEach items="${stations}" var="station">
+
+        <c:forEach items="${station.items}" var="item">
+            <li class="list-group-item">${item.id}, ${item.mnr}, ${item.name}, <a href = "/items/show/${item.id}"> View </a></li>
+        </c:forEach><br>
+
+    </c:forEach>--%>
 </div>
 
 </body>
