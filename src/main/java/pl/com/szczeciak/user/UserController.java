@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.mail.Message;
 import java.util.List;
 
 @Controller
@@ -20,6 +19,9 @@ public class UserController {
     @Autowired
     public SimpleMailMessage template;
 
+    @Autowired
+    EmailServiceImpl emailService;
+
     @GetMapping("/all")
     public String showAllUsers(Model model){
         List<User> users = userRepository.findAll();
@@ -30,9 +32,15 @@ public class UserController {
 
 
     @GetMapping("/sendMail")
-    @ResponseBody
-    public String sendMail(){
+    public String sendMail(Model model){
+        Email email = new Email();
+        model.addAttribute("email", email);
+        return "mailSend";
+    }
 
-        return "mail sand attempt... check mail box";
+    @PostMapping("/sendMail")
+    public String sendMail(Model model, @ModelAttribute Email email){
+        emailService.sendSimpleMessage(email.getTo(), email.getSubject(), email.getText());
+        return "redirect: /";
     }
 }

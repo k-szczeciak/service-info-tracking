@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofszczeciak
-  Date: 25/05/2019
-  Time: 14:29
+  Date: 09/06/2019
+  Time: 21:57
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,7 +14,7 @@
     <script src="<c:url value="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"/>"></script>
     <link href="<c:url value="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
-    <title>Home</title>
+    <title>Send e-mail</title>
 </head>
 <body>
 
@@ -112,57 +112,21 @@
 <br>
 <br>
 
-<%--<div style="width: 80%" class="container">
-    Stations:
-    <table class="table table-hover">
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">name</th>
-            <th scope="col">localization</th>
-            <th scope="col">capacity</th>
-            <th scope="col">...</th>
-        </tr>
-
-        <c:forEach items="${stations}" var="station" varStatus="theCount">
-            <tr>
-                <td scope="row">${station.id}</td>
-                <td scope="row">${station.name}</td>
-                <td scope="row">${station.localization}</td>
-                <td scope="row">${station.capacity}</td>
-                <td scope="row"><a href = "#">View</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</div>--%>
 
 
-<%--<c:forEach items="${stations}" var="station"  varStatus="varStatus" >
-    <div class="container">
-            ${station.name}, ${varStatus.index},
-        &lt;%&ndash;<c:forEach items="${itemArray[${varStatus.index}]}" var="item" varStatus="theCount">
-            <li class="list-group-item">${item.name}</li>
-        </c:forEach>&ndash;%&gt;
-    </div>
-</c:forEach>--%>
+<!-- FORM -->
+
 <div class="container">
-    <c:forEach items="${itemArray}" var = "items" varStatus="varStatus">
-        <div class = "container" style = "width: 22em; display: inline-block; vertical-align: top;">
-            <li class="list-group-item active">${stations[varStatus.index].name}</li>
-            <c:forEach items="${items}" var = "item">
-                <li class="list-group-item">${item.id}, ${item.mnr}, ${item.name}, <a href = "/items/show/${item.id}"> View </a></li>
-            </c:forEach><br>
-        </div>
-    </c:forEach>
-    <br>
-    <br>
-    <%--other solution:
-    <c:forEach items="${stations}" var="station">
+    <form:form method="post" modelAttribute="email">
+        email:
+        <form:input path="to" class="form-control" placeholder="someone@someone.com"/><br>
+        Subject:
+        <form:input path="subject" class="form-control" /><br>
+        text:
+        <form:textarea path="text" class="form-control" /><br>
 
-        <c:forEach items="${station.items}" var="item">
-            <li class="list-group-item">${item.id}, ${item.mnr}, ${item.name}, <a href = "/items/show/${item.id}"> View </a></li>
-        </c:forEach><br>
-
-    </c:forEach>--%>
+        <input type="submit" value="Save" />
+    </form:form>
 </div>
 
 </body>

@@ -7,9 +7,9 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EmailServiceImpl /*implements EmailService*/ {
+public class EmailServiceImpl implements EmailService {
 
-/*    @Autowired
+    @Autowired
     public JavaMailSender emailSender;
 
     public void sendSimpleMessage(String to, String subject, String text){
@@ -20,7 +20,7 @@ public class EmailServiceImpl /*implements EmailService*/ {
         message.setText(text);
         emailSender.send(message);
 
-    }*/
+    }
 
 
 
