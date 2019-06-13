@@ -220,6 +220,8 @@
 
 
 
+
+
 <script>
     //var qrcode = new QRCode("qrcode1");
     var qrcode = new QRCode("qrcode1", {

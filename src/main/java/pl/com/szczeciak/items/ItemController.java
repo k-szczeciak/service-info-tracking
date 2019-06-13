@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.com.szczeciak.comment.Comment;
 import pl.com.szczeciak.comment.CommentRepository;
+import pl.com.szczeciak.doc.Doc;
 import pl.com.szczeciak.doc.DocRepository;
 import pl.com.szczeciak.operation.Operation;
 import pl.com.szczeciak.operation.OperationRepository;
@@ -13,6 +16,10 @@ import pl.com.szczeciak.station.Station;
 import pl.com.szczeciak.station.StationRepository;
 import pl.com.szczeciak.user.UserRepository;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import static java.time.LocalDateTime.now;
@@ -94,6 +101,52 @@ public class ItemController {
         item.setStation(stationRepository.getOne((long) 1));
         itemRepository.save(item);
         return "redirect: ../";
+    }
+
+    @GetMapping("/uploadFiles")
+    public String uplaodFiles(){
+
+        return "uploadFiles";
+    }
+
+    //Save the uploaded file to this folder
+    private static String UPLOADED_FOLDER = "/Users/krzysztofszczeciak/workspace/_Project/src/main/docFiles/";
+
+
+    @PostMapping("uploadFiles")
+    public String uploadFiles(@RequestParam("file") MultipartFile file,
+                              RedirectAttributes redirectAttributes){
+
+        if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+
+
+            return "redirect:uploadStatus";
+        }
+
+        try {
+
+            // Get the file and save it somewhere
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            Files.write(path, bytes);
+
+            redirectAttributes.addFlashAttribute("message",
+                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
+
+/*            Item item = itemRepository.findById(1L);
+            List<Doc> docs = item.getDocs();
+            Doc doc = new Doc();
+            doc.setPath(path.toString());
+            docs.add(doc);
+            item.setDocs(docs);
+            itemRepository.save(item);*/
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "uploadFiles";
     }
 
     /*

@@ -18,6 +18,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -52,7 +53,7 @@ public class AppConfig implements WebMvcConfigurer {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] {"pl.com.szczeciak"});
+        em.setPackagesToScan("pl.com.szczeciak");
         em.setJpaDialect(new HibernateJpaDialect());
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         em.setJpaProperties(additionalProperties());
@@ -154,5 +155,6 @@ public class AppConfig implements WebMvcConfigurer {
                 "This is the test email template for your email:\n%s\n");
         return message;
     }
+
 
 }
