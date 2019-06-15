@@ -8,4 +8,7 @@ public interface DocRepository extends JpaRepository<Doc, Long> {
 
     List<Doc> findAllById(Long id);
 
+    Doc findByItemId(long id);
+
+
 }

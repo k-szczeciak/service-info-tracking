@@ -112,13 +112,23 @@
 <br>
 
 <div class = "container">
-    <img src="http://lorempixel.com/256/256/transport" class = "rounded float-right" alt="...">
-
-
+    <%--<img src="http://lorempixel.com/256/256/transport" class = "rounded float-right" alt="...">--%>
+        <img alt="image"  src="<c:url value="/files/01.jpg" />"
+             class = "rounded float-right" alt="..." style="height: 256px; width:255px">
     <div class="container" id="qrcode1"></div><br>
-
-
 </div>
+
+<div class="container">
+    links:
+    <div class="container">
+        <a href="https://www.baeldung.com/spring-mvc-static-resources"> Help for attachments of static resources</a>
+    </div>
+
+    <div class="container">
+        <a href="/items/uploadFiles">Add photo</a>
+    </div>
+</div>
+<br>
 
 
 <div class="container">

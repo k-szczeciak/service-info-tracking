@@ -41,6 +41,8 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class AppConfig implements WebMvcConfigurer {
 
+
+
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -97,6 +99,9 @@ public class AppConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+        registry.addResourceHandler("/files/**")
+//                .addResourceLocations("file:/Users/krzysztofszczeciak/Downloads/");
+                .addResourceLocations("file:/Users/krzysztofszczeciak/workspace/_Project/src/main/docFiles/");
     }
 
     @Bean
@@ -155,6 +160,8 @@ public class AppConfig implements WebMvcConfigurer {
                 "This is the test email template for your email:\n%s\n");
         return message;
     }
+
+
 
 
 }

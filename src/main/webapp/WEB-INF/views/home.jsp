@@ -155,7 +155,7 @@
     </c:forEach>
     <br>
     <br>
-    <%--other solution:
+    <%--other solution : todo przerobic na rozwiazanie od prowadzocego
     <c:forEach items="${stations}" var="station">
 
         <c:forEach items="${station.items}" var="item">

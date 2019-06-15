@@ -55,10 +55,13 @@ public class ItemController {
 
     @GetMapping("/show/{id}")
     public String showItemById(Model model, @PathVariable Long id){
+
          List<Item> items= itemRepository.findAllById(id);
         model.addAttribute("items", items);
+
         List<Operation> operations = operationRepository.findAllByItem_Id(id);
         model.addAttribute("operations", operations);
+
         List<Station>stations = stationRepository.findAll();
         model.addAttribute("stations", stations);
 
@@ -67,6 +70,9 @@ public class ItemController {
 
         List<Comment> comments = commentRepository.findAllByItemId(id);
         model.addAttribute("comments", comments);
+
+        Doc doc = docRepository.findByItemId(id);
+        model.addAttribute("doc", doc);
 
 
         return "item";
@@ -104,7 +110,7 @@ public class ItemController {
     }
 
     @GetMapping("/uploadFiles")
-    public String uplaodFiles(){
+    public String uplaodFiles( ){
 
         return "uploadFiles";
     }
@@ -113,7 +119,7 @@ public class ItemController {
     private static String UPLOADED_FOLDER = "/Users/krzysztofszczeciak/workspace/_Project/src/main/docFiles/";
 
 
-    @PostMapping("uploadFiles")
+    @PostMapping("/uploadFiles")
     public String uploadFiles(@RequestParam("file") MultipartFile file,
                               RedirectAttributes redirectAttributes){
 
@@ -134,13 +140,13 @@ public class ItemController {
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
 
-/*            Item item = itemRepository.findById(1L);
-            List<Doc> docs = item.getDocs();
+            //String result = Paths.get("").toAbsolutePath().toString();
             Doc doc = new Doc();
             doc.setPath(path.toString());
-            docs.add(doc);
-            item.setDocs(docs);
-            itemRepository.save(item);*/
+            doc.setDescription("new doc");
+            doc.setDocType(file.getContentType());
+            doc.setItem(itemRepository.findById(1L));
+            docRepository.save(doc);
 
         } catch (IOException e) {
             e.printStackTrace();
