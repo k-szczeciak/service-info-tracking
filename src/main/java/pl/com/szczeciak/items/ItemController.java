@@ -28,6 +28,9 @@ import static java.time.LocalDateTime.now;
 @RequestMapping("/items")
 public class ItemController {
 
+    //Save the uploaded file to this folder
+    private static String UPLOADED_FOLDER = "/Users/krzysztofszczeciak/workspace/_Project/src/main/docFiles/";
+
     @Autowired
     ItemRepository itemRepository;
 
@@ -71,8 +74,10 @@ public class ItemController {
         List<Comment> comments = commentRepository.findAllByItemId(id);
         model.addAttribute("comments", comments);
 
-        Doc doc = docRepository.findByItemId(id);
+/*        Doc doc = docRepository.findByItemId(id);
         model.addAttribute("doc", doc);
+        this will be replaced with list of docs
+        */
 
 
         return "item";
@@ -109,24 +114,25 @@ public class ItemController {
         return "redirect: ../";
     }
 
-    @GetMapping("/uploadFiles")
-    public String uplaodFiles( ){
+    @GetMapping("/uploadFiles/{id}")
+    public String uplaodFiles(@PathVariable Long id, Model model){
 
+        model.addAttribute("id", id);
         return "uploadFiles";
     }
 
-    //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "/Users/krzysztofszczeciak/workspace/_Project/src/main/docFiles/";
-
-
-    @PostMapping("/uploadFiles")
+    @PostMapping("/uploadFiles/{id}")
     public String uploadFiles(@RequestParam("file") MultipartFile file,
-                              RedirectAttributes redirectAttributes){
+                              RedirectAttributes redirectAttributes,
+                              @PathVariable Long id){
+
+        //todo jak zamienic @PathVariable na Post-a
+        //todo validator do plikow: wielkosc, typ i czy jest
+        //todo to wrzuci do serwisu
+        //todo przekierowanie zalezne od pubktu startu
 
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-
-
             return "redirect:uploadStatus";
         }
 
@@ -140,19 +146,26 @@ public class ItemController {
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
 
-            //String result = Paths.get("").toAbsolutePath().toString();
-            Doc doc = new Doc();
+            Item item = itemRepository.findById((long)id);
+            item.setItemImage(path.getFileName().toString());
+            itemRepository.save(item);
+
+
+            /*Doc doc = new Doc();
             doc.setPath(path.toString());
             doc.setDescription("new doc");
             doc.setDocType(file.getContentType());
             doc.setItem(itemRepository.findById(1L));
-            docRepository.save(doc);
+            docRepository.save(doc);*/
+
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return "uploadFiles";
+        return "redirect: /items/all";
     }
 
     /*

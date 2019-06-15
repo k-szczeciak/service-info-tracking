@@ -27,10 +27,11 @@ public class Item {
     @NotNull
     private String sn;
 
-//    @NotNull
     private LocalDateTime fd;
 
     private String customer; // todo: implement customer table hence here should be customer_id instead;
+
+    private String itemImage;
 
     @ManyToOne
     @JoinColumn(name = "station_id")
@@ -132,5 +133,13 @@ public class Item {
 
     public void setFd(LocalDateTime fd) {
         this.fd = fd;
+    }
+
+    public String getItemImage() {
+        return itemImage;
+    }
+
+    public void setItemImage(String itemImage) {
+        this.itemImage = itemImage;
     }
 }

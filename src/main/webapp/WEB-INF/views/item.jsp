@@ -113,8 +113,8 @@
 
 <div class = "container">
     <%--<img src="http://lorempixel.com/256/256/transport" class = "rounded float-right" alt="...">--%>
-        <img alt="image"  src="<c:url value="/files/01.jpg" />"
-             class = "rounded float-right" alt="..." style="height: 256px; width:255px">
+        <img alt="image"  src="<c:url value="/files/${items[0].itemImage}" />"
+             class = "rounded float-right" alt="..." style="height: 256px; width:360px">
     <div class="container" id="qrcode1"></div><br>
 </div>
 
@@ -125,10 +125,12 @@
     </div>
 
     <div class="container">
-        <a href="/items/uploadFiles">Add photo</a>
+        <a href="/items/uploadFiles/${items[0].id}">Add photo</a>
     </div>
 </div>
 <br>
+
+<!-- Todo: czy jest done azeby tam zamieszczac komentarze jak cos zostalo zrobione np liniki zewnetrzne -->
 
 
 <div class="container">

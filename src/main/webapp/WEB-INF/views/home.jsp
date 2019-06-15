@@ -149,13 +149,30 @@
         <div class = "container" style = "width: 22em; display: inline-block; vertical-align: top;">
             <li class="list-group-item active">${stations[varStatus.index].name}</li>
             <c:forEach items="${items}" var = "item">
-                <li class="list-group-item">${item.id}, ${item.mnr}, ${item.name}, <a href = "/items/show/${item.id}"> View </a></li>
+                <li class="list-group-item">
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                <div style="display: inline-block; vertical-align: top;">
+                                    <a href = "/items/show/${item.id}">
+                                        <img src="<c:url value="/files/${item.itemImage}" />" border=0 height=60 width=100 />
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="display: inline-block">
+                                    Id: ${item.id}, MNR: ${item.mnr}, Name: ${item.name}
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
             </c:forEach><br>
         </div>
     </c:forEach>
     <br>
     <br>
-    <%--other solution : todo przerobic na rozwiazanie od prowadzocego
+    <%--other solution : todo przerobic na rozwiazanie od Marcina
     <c:forEach items="${stations}" var="station">
 
         <c:forEach items="${station.items}" var="item">
