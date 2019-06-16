@@ -113,7 +113,7 @@
 
 <div class = "container">
     <%--<img src="http://lorempixel.com/256/256/transport" class = "rounded float-right" alt="...">--%>
-        <img alt="image"  src="<c:url value="/files/${items[0].itemImage}" />"
+        <img alt="image"  src="<c:url value="/files/${item.itemImage}" />"
              class = "rounded float-right" alt="..." style="height: 256px; width:360px">
     <div class="container" id="qrcode1"></div><br>
 </div>
@@ -125,7 +125,7 @@
     </div>
 
     <div class="container">
-        <a href="/items/uploadFiles/${items[0].id}">Add photo</a>
+        <a href="/items/uploadFiles/${item.id}">Add photo</a>
     </div>
 </div>
 <br>
@@ -136,15 +136,17 @@
 <div class="container">
     <form:form method="post" modelAttribute="item">
         id:
-        <form:input path="id" class="form-control" value="${items[0].id}" /><br>
+        <form:input path="id" class="form-control" value="${item.id}" /><br>
         Name:
-        <form:input path="name" class="form-control" value="${items[0].name}" /><br>
+        <form:input path="name" class="form-control" value="${item.name}" /><br>
         MNR:
-        <form:input path="mnr" class="form-control" value="${items[0].mnr}"/><br>
+        <form:input path="mnr" class="form-control" value="${item.mnr}"/><br>
         sn:
-        <form:input path="sn" class="form-control" value="${items[0].sn}"/><br>
+        <form:input path="sn" class="form-control" value="${item.sn}"/><br>
         customer:
-        <form:input path="customer" class="form-control" value="${items[0].customer}"/><br>
+        <form:input path="customer" class="form-control" value="${item.customer}"/><br>
+        photo:
+        <form:input path="itemImage" class="form-control" value="${item.itemImage}"/><br>
         <div class="form-group">
             <label for="station_id">Stations:</label>
             <form:select path="station.id" items="${stations}" itemLabel="name" itemValue="id"
@@ -201,7 +203,7 @@
 <br><br>
 
 <div class="container">
-    <a href="/comments/add/${items[0].id}" >Add comment</a>
+    <a href="/comments/add/${item.id}" >Add comment</a>
 </div>
 
 <%--<div class="container">
@@ -237,7 +239,7 @@
 <script>
     //var qrcode = new QRCode("qrcode1");
     var qrcode = new QRCode("qrcode1", {
-        text: "localhost:8080/items/show/${items[0].id}",
+        text: "localhost:8080/items/show/${item.id}",
         width: 256,
         height: 256,
         colorDark : "#000000",

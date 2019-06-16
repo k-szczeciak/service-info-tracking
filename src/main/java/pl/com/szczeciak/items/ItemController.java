@@ -59,20 +59,31 @@ public class ItemController {
     @GetMapping("/show/{id}")
     public String showItemById(Model model, @PathVariable Long id){
 
-         List<Item> items= itemRepository.findAllById(id);
+        //items
+        List<Item> items= itemRepository.findAllById(id);
         model.addAttribute("items", items);
 
+        //operations
         List<Operation> operations = operationRepository.findAllByItem_Id(id);
         model.addAttribute("operations", operations);
 
+        //comments
+        List<Comment> comments = commentRepository.findAllByItemId(id);
+        model.addAttribute("comments", comments);
+
+        //stations for list
         List<Station>stations = stationRepository.findAll();
         model.addAttribute("stations", stations);
 
-        Item item = new Item();
+        List<Doc> docs = docRepository.findAllById(id);
+        model.addAttribute("docs", docs);
+
+        /*Item item = new Item();
+        model.addAttribute("item", item);
+*/
+        Item item = itemRepository.findById((long) id);
         model.addAttribute("item", item);
 
-        List<Comment> comments = commentRepository.findAllByItemId(id);
-        model.addAttribute("comments", comments);
 
 /*        Doc doc = docRepository.findByItemId(id);
         model.addAttribute("doc", doc);
