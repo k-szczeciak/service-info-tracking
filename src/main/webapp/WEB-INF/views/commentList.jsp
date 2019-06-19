@@ -119,6 +119,7 @@
             <th scope="col">created</th>
             <th scope="col">description</th>
             <th scope="col">item id</th>
+            <th scope="col">...</th>
         </tr>
 
         <c:forEach items="${comments}" var="comment" varStatus="theCount">
@@ -127,6 +128,7 @@
                 <td scope="row">${comment.created}</td>
                 <td scope="row">${comment.description}</td>
                 <td scope="row">${comment.item.id}</td>
+                <td scope="row">  <a href="/comments/edit/${comment.id}"> edit </a> </td>
             </tr>
         </c:forEach>
     </table>

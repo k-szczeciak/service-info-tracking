@@ -9,6 +9,8 @@ import pl.com.szczeciak.items.ItemRepository;
 
 import java.util.List;
 
+import static java.time.LocalDateTime.now;
+
 @Controller
 @RequestMapping("/comments")
 public class CommentController {
@@ -42,6 +44,29 @@ public class CommentController {
 
     @PostMapping("/add/{id}")
     public String addComment(Model model, @ModelAttribute Comment comment){
+
+        String result = comment.getDescription().replaceAll("\n", "<br>");
+        comment.setDescription(result);
+        commentRepository.save(comment);
+        return "redirect: /";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editComment(Model model, @PathVariable long id){
+        Comment comment = commentRepository.findCommentById(id);
+        model.addAttribute("comment", comment);
+
+        Item item = itemRepository.findById(id);
+        model.addAttribute("item", item);
+
+        return "comment";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editComment(Model model, @ModelAttribute Comment comment){
+        String result = comment.getDescription().replace("\n", "<br>");
+        comment.setDescription(result);
+        comment.setCreated(now());
         commentRepository.save(comment);
         return "redirect: /";
     }

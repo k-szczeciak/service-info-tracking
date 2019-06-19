@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofszczeciak
-  Date: 25/05/2019
-  Time: 14:29
+  Date: 19/06/2019
+  Time: 07:14
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,7 +14,7 @@
     <script src="<c:url value="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"/>"></script>
     <link href="<c:url value="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
-    <title>Home</title>
+    <title>Comment</title>
 </head>
 <body>
 
@@ -82,7 +82,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/comments/all">All Comments</a>
                         <a class="dropdown-item" href="#">My Comments</a>
-                        <a class="dropdown-item" href="/comments/add">New Comment</a>
+                        <a class="dropdown-item" href="#">New Comment</a>
                     </div>
                 </li>
 
@@ -93,7 +93,6 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/users/all">All Users</a>
                         <a class="dropdown-item" href="#">New User</a>
-                        <a class="dropdown-item" href="/users/sendMail">Send email</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -112,75 +111,18 @@
 <br>
 <br>
 
-<%--<div style="width: 80%" class="container">
-    Stations:
-    <table class="table table-hover">
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">name</th>
-            <th scope="col">localization</th>
-            <th scope="col">capacity</th>
-            <th scope="col">...</th>
-        </tr>
 
-        <c:forEach items="${stations}" var="station" varStatus="theCount">
-            <tr>
-                <td scope="row">${station.id}</td>
-                <td scope="row">${station.name}</td>
-                <td scope="row">${station.localization}</td>
-                <td scope="row">${station.capacity}</td>
-                <td scope="row"><a href = "#">View</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</div>--%>
-
-
-<%--<c:forEach items="${stations}" var="station"  varStatus="varStatus" >
-    <div class="container">
-            ${station.name}, ${varStatus.index},
-        &lt;%&ndash;<c:forEach items="${itemArray[${varStatus.index}]}" var="item" varStatus="theCount">
-            <li class="list-group-item">${item.name}</li>
-        </c:forEach>&ndash;%&gt;
-    </div>
-</c:forEach>--%>
 <div class="container">
-    <c:forEach items="${itemArray}" var = "items" varStatus="varStatus">
-        <div class = "container" style = "width: 22em; display: inline-block; vertical-align: top;">
-            <li class="list-group-item active">${stations[varStatus.index].name},
-                    ilość elementów: ${qty[varStatus.index]}</li>
-            <c:forEach items="${items}" var = "item">
-                <li class="list-group-item">
-                    <table style="width:100%">
-                        <tr>
-                            <td>
-                                <div style="display: inline-block; vertical-align: top;">
-                                    <a href = "/items/show/${item.id}">
-                                        <img src="<c:url value="/files/${item.itemImage}" />" border=0 height=60 width=100 />
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div style="display: inline-block">
-                                    Id: ${item.id}, MNR: ${item.mnr}, Name: ${item.name}
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </li>
-            </c:forEach><br>
-        </div>
-    </c:forEach>
-    <br>
-    <br>
-    <%--other solution : todo przerobic na rozwiazanie od Marcina
-    <c:forEach items="${stations}" var="station">
-
-        <c:forEach items="${station.items}" var="item">
-            <li class="list-group-item">${item.id}, ${item.mnr}, ${item.name}, <a href = "/items/show/${item.id}"> View </a></li>
-        </c:forEach><br>
-
-    </c:forEach>--%>
+    <form:form method="post" modelAttribute="comment">
+        id:
+        <form:input path="id" class="form-control" value="${id}" /><br>
+        item id:
+        <form:input path="item.id" class="form-control" value="${item.id}" /><br>
+        Comment:
+        <form:textarea class="form-control" path="description" rows="3" value = "${description}"></form:textarea>
+        <%--<form:input class="form-control" path="description" value = "${description}"></form:input>--%>
+        <input type="submit" value="Update" />
+    </form:form>
 </div>
 
 </body>

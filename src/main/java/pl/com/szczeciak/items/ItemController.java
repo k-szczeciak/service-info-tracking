@@ -78,18 +78,8 @@ public class ItemController {
         List<Doc> docs = docRepository.findAllById(id);
         model.addAttribute("docs", docs);
 
-        /*Item item = new Item();
-        model.addAttribute("item", item);
-*/
         Item item = itemRepository.findById((long) id);
         model.addAttribute("item", item);
-
-
-/*        Doc doc = docRepository.findByItemId(id);
-        model.addAttribute("doc", doc);
-        this will be replaced with list of docs
-        */
-
 
         return "item";
     }
@@ -104,8 +94,8 @@ public class ItemController {
         operation.setItem(item);
         operation.setStation(item.getStation());
         operation.setUser(userRepository.findById((long) 1));
-        operationRepository.save(operation);
 
+        operationRepository.save(operation);
 
         return "redirect: /";
     }
@@ -160,17 +150,6 @@ public class ItemController {
             Item item = itemRepository.findById((long)id);
             item.setItemImage(path.getFileName().toString());
             itemRepository.save(item);
-
-
-            /*Doc doc = new Doc();
-            doc.setPath(path.toString());
-            doc.setDescription("new doc");
-            doc.setDocType(file.getContentType());
-            doc.setItem(itemRepository.findById(1L));
-            docRepository.save(doc);*/
-
-
-
 
         } catch (IOException e) {
             e.printStackTrace();
