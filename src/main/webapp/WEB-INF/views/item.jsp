@@ -208,6 +208,13 @@
     <a href="/comments/add/${item.id}" >Add comment</a>
 </div>
 
+<div class="container">
+    <a href="/files/${item.itemImage}">download image</a><br>
+    <a href="/files/01_23.04-26.04_858PLN.pdf">download pdf</a><br>
+    <a href="/files/003 Motivation to learn Cortex Family of Processors.mp4">download mp4</a><br>
+    <a href="/files/03_2017_Faktura_KONCOWA_ZPS_pulpit_CAN.doc">download doc</a><br>
+</div>
+
 <%--<div class="container">
     <form:form method="post" modelAttribute="comment">
         <div class="form-group">
