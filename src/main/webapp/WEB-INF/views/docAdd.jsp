@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofszczeciak
-  Date: 09/06/2019
-  Time: 21:57
+  Date: 24/06/2019
+  Time: 17:50
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,26 +14,15 @@
     <script src="<c:url value="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"/>"></script>
     <link href="<c:url value="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
-    <title>Send e-mail</title>
+    <script type="text/javascript" src="/resources/js/qrcode.js"></script>
+    <title>add doc</title>
 </head>
 <body>
 
 <%@include file="header.jspf" %>
 
-<!-- FORM -->
 
-<div class="container">
-    <form:form method="post" modelAttribute="email">
-        email:
-        <form:input path="to" class="form-control" placeholder="someone@someone.com"/><br>
-        Subject:
-        <form:input path="subject" class="form-control" /><br>
-        text:
-        <form:textarea path="text" class="form-control" /><br>
 
-        <input type="submit" value="Save" />
-    </form:form>
-</div>
 
 </body>
 </html>

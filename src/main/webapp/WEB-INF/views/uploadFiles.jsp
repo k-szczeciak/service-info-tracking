@@ -10,10 +10,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
+    <script src="<c:url value="/webjars/jquery/3.0.0/jquery.min.js"/>"></script>
+    <script src="<c:url value="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"/>"></script>
+    <link href="<c:url value="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>" rel="stylesheet">
+    <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
     <title>upload files</title>
 </head>
 <body>
 <h3> upload files </h3>
+
+<%@include file="header.jspf" %>
 
 <!-- upload files -->
 <form method="POST" action="${pageContext.request.contextPath}/items/uploadFiles/${id}" enctype="multipart/form-data">
