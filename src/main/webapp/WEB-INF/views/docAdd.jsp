@@ -21,12 +21,12 @@
 
 <%@include file="header.jspf" %>
 
-<form method="POST" action="${pageContext.request.contextPath}/docs/add/${id}" enctype="multipart/form-data" modelAttribute = "doc">
+<form method="POST" action="${pageContext.request.contextPath}/docs/add/${item_id}" enctype="multipart/form-data" modelAttribute = "doc">
     <%--<form:input type="hidden" path="id" class="form-control" value="${id}" /><br>--%>
 <%--    item id:
     <input type="text" name = "item"><br>--%>
     item id:
-    <input type="text" name="id" value = "${id}"/><br>
+    <input type="text" name="item_id" value = "${item_id}"/><br>
     <%--<form:input path="id" class="form-control" value="${id}" /><br>--%>
         description:
     <input type="text" name = "description"><br>

@@ -37,19 +37,19 @@ public class DocController {
         return "docList";
     }
 
-    @GetMapping("/add/{id}")
-    public String addNewDoc(Model model, @PathVariable long id){
+    @GetMapping("/add/{item_id}")
+    public String addNewDoc(Model model, @PathVariable long item_id){
         Doc doc = new Doc();
         model.addAttribute("doc", doc);
-        model.addAttribute("id", id);
+        model.addAttribute("item_id", item_id);
         return "docAdd";
     }
 
-    @PostMapping("/add/{id}")
+    @PostMapping("/add/{item_id}")
     public String addNewDoc(@RequestParam("file") MultipartFile file,
                             RedirectAttributes redirectAttributes,
                             @ModelAttribute Doc doc,
-                            @PathVariable long id){
+                            @PathVariable long item_id){
 
         //Doc doc = new Doc();
 
@@ -68,7 +68,7 @@ public class DocController {
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
 
-            Item item = itemRepository.findById(id);
+            Item item = itemRepository.findById(item_id);
             doc.setPath(path.getFileName().toString());
             doc.setDocType(file.getContentType());
             doc.setItem(item);
