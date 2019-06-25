@@ -122,7 +122,7 @@
 <!-- docs -->
 <div class="container"> Docs:
     <c:forEach items="${docs}" var="doc" varStatus="theCount">
-        ${doc.description}, ${doc.path}<br>
+        ${doc.description}, ${doc.path}, <a href="<c:url value="/files/${doc.path}" />"> download </a> <br>
     </c:forEach>
     <a href="/docs/add/${item.id}">add document</a>
 </div>
