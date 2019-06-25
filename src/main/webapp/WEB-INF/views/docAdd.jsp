@@ -20,12 +20,19 @@
 <body>
 
 <%@include file="header.jspf" %>
-<%--
-<form method="POST" action="${pageContext.request.contextPath}/items/uploadFiles/${id}" enctype="multipart/form-data">
-    <form:input type="hidden" path="id" class="form-control" value="${id}" /><br>
+
+<form method="POST" action="${pageContext.request.contextPath}/docs/add/${id}" enctype="multipart/form-data" modelAttribute = "doc">
+    <%--<form:input type="hidden" path="id" class="form-control" value="${id}" /><br>--%>
+<%--    item id:
+    <input type="text" name = "item"><br>--%>
+    item id:
+    <input type="text" name="id" value = "${id}"/><br>
+    <%--<form:input path="id" class="form-control" value="${id}" /><br>--%>
+        description:
+    <input type="text" name = "description"><br>
     <input type="file" name="file" /><br/>
     <input type="submit" value="Submit" />
-</form>--%>
+</form>
 
 
 

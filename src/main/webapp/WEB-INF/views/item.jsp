@@ -124,6 +124,7 @@
     <c:forEach items="${docs}" var="doc" varStatus="theCount">
         ${doc.description}, ${doc.path}<br>
     </c:forEach>
+    <a href="/docs/add/${item.id}">add document</a>
 </div>
 
 
