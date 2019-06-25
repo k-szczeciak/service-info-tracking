@@ -20,7 +20,12 @@
 <body>
 
 <%@include file="header.jspf" %>
-
+<%--
+<form method="POST" action="${pageContext.request.contextPath}/items/uploadFiles/${id}" enctype="multipart/form-data">
+    <form:input type="hidden" path="id" class="form-control" value="${id}" /><br>
+    <input type="file" name="file" /><br/>
+    <input type="submit" value="Submit" />
+</form>--%>
 
 
 

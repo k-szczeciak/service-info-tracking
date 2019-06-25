@@ -42,7 +42,7 @@
 
 <!-- Todo: czy jest done azeby tam zamieszczac komentarze jak cos zostalo zrobione np liniki zewnetrzne -->
 
-
+<!-- Item field -->
 <div class="container">
     <form:form method="post" modelAttribute="item">
         id:
@@ -68,6 +68,7 @@
 
 
 <br>
+<!-- operations-->
 <div class = "container">
 
     <div style="width: 80%" class="container">
@@ -92,6 +93,8 @@
 </div><br>
 
 <br>
+
+<!-- comments -->
 <div class = "container">
 
     <div style="width: 80%" class="container">
@@ -114,15 +117,23 @@
 </div>
 <br><br>
 
+
+
+<!-- docs -->
+<div class="container"> Docs:
+    <c:forEach items="${docs}" var="doc" varStatus="theCount">
+        ${doc.description}, ${doc.path}<br>
+    </c:forEach>
+</div>
+
+
+
 <div class="container">
     <a href="/comments/add/${item.id}" >Add comment</a>
 </div>
 
 <div class="container">
     <a href="/files/${item.itemImage}">download image</a><br>
-    <a href="/files/01_23.04-26.04_858PLN.pdf">download pdf</a><br>
-    <a href="/files/003 Motivation to learn Cortex Family of Processors.mp4">download mp4</a><br>
-    <a href="/files/03_2017_Faktura_KONCOWA_ZPS_pulpit_CAN.doc">download doc</a><br>
 </div>
 
 <%--<div class="container">

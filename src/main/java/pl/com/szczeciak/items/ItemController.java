@@ -75,7 +75,7 @@ public class ItemController {
         List<Station>stations = stationRepository.findAll();
         model.addAttribute("stations", stations);
 
-        List<Doc> docs = docRepository.findAllById(id);
+        List<Doc> docs = docRepository.findAllByItemId(id);
         model.addAttribute("docs", docs);
 
         Item item = itemRepository.findById((long) id);
@@ -157,6 +157,8 @@ public class ItemController {
 
         return "redirect: /items/all";
     }
+
+
 
     /*
     * Todo:

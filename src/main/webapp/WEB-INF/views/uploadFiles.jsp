@@ -17,16 +17,17 @@
     <title>upload files</title>
 </head>
 <body>
-<h3> upload files </h3>
 
 <%@include file="header.jspf" %>
 
 <!-- upload files -->
-<form method="POST" action="${pageContext.request.contextPath}/items/uploadFiles/${id}" enctype="multipart/form-data">
-    <form:input type="hidden" path="id" class="form-control" value="${id}" /><br>
-    <input type="file" name="file" /><br/>
-    <input type="submit" value="Submit" />
-</form>
+<div class="container">
+    <form method="POST" action="${pageContext.request.contextPath}/items/uploadFiles/${id}" enctype="multipart/form-data">
+        <form:input type="hidden" path="id" class="form-control" value="${id}" /><br>
+        <input type="file" name="file" /><br/>
+        <input type="submit" value="Submit" />
+    </form>
+</div>
 
 </body>
 </html>
