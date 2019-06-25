@@ -120,12 +120,39 @@
 
 
 <!-- docs -->
-<div class="container"> Docs:
+<!-- comments -->
+<div class = "container">
+
+    <div style="width: 80%" class="container">
+        <table class="table table-hover">Docs:
+            <tr>
+                <th scope="col">created</th>
+                <th scope="col">description</th>
+                <th scope="col">type</th>
+                <th scope="col">...</th>
+            </tr>
+
+            <c:forEach items="${docs}" var="doc" varStatus="theCount">
+                <tr>
+                    <td scope="row">${doc.created}</td>
+                    <td scope="row">${doc.description}</td>
+                    <td scope="row" style="text-align: left">${doc.docType}</td>
+                    <td scope="row"><a href="<c:url value="/files/${doc.path}" />"> download </a></td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+    <a href="/docs/add/${item.id}">add document</a>
+</div>
+<br><br>
+
+
+<%--<div class="container"> Docs:
     <c:forEach items="${docs}" var="doc" varStatus="theCount">
         ${doc.description}, ${doc.path}, <a href="<c:url value="/files/${doc.path}" />"> download </a> <br>
     </c:forEach>
     <a href="/docs/add/${item.id}">add document</a>
-</div>
+</div>--%>
 
 
 
