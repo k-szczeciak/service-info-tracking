@@ -51,8 +51,6 @@ public class DocController {
                             @ModelAttribute Doc doc,
                             @PathVariable long item_id){
 
-        //Doc doc = new Doc();
-
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
             return "redirect:uploadStatus";
@@ -72,7 +70,6 @@ public class DocController {
             doc.setPath(path.getFileName().toString());
             doc.setDocType(file.getContentType());
             doc.setItem(item);
-            //doc.setCreated();
             docRepository.save(doc);
 
         } catch (IOException e) {
