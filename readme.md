@@ -1,16 +1,13 @@
-###Main goal
-
+### Main goal
     Ease and fast access to all information concenrning for customer service for convinence and managing. Ease fo fast
     data input and matching
-###Scope
-
+### Scope
     Web service for storing and tracking information related to customer service activities.
     Web service tracks physical item or case with vital informations as comments, documentation (photos, videos, pdf-s).
     It allows to create, edit and view components matching requirements and authorisations. Aggregate documents,
     processes and display statictics. With scenarios process flow controll is possible.
 
-###Features
-
+### Features
 * User account and authoristaion profiles
 * process splitted into workstations for tracking and flow control
 * Operation monitoring/tracking - operation status change tracking for statistics and evaluation
@@ -30,15 +27,13 @@
 
 
 
-###How to start:
-
+### How to start:
 * create mysql DB "projekt" and connect
 * run tomcat
 
 
 
-###To be done
-
+### To be done
 * item active as separate table or modifyer?
 * item time on place
 * items aggegated time on header
