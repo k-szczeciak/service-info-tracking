@@ -22,7 +22,7 @@ Web service for storing and tracking information related to customer service act
     - comments / docs / operations
     - statistics
 ***
-### How to start:
+### How to start
 * create mysql DB "projekt" and connect
 * run tomcat
 ***
