@@ -15,7 +15,7 @@ Web service for storing and tracking information related to customer service act
 * QRcode for fast tracking and access using e.g. smartphone
 * Statistics/charts
 * views:
-    TBF - workstations aggregated display
+    - workstations aggregated display
     - Work station view
     - User view
     - Item view
