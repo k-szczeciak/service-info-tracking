@@ -31,6 +31,7 @@
 How to start:
 - create mysql DB "projekt" and connect
 - run tomcat
+- some data may be nneded to be filled before running
 
 
 
