@@ -24,6 +24,7 @@ Web service for storing and tracking information related to customer service act
 ***
 ### How to start
 * create mysql DB "projekt" and connect
+* some data maight be necessary to add to run application propoerly
 * run tomcat
 ***
 ### To be done
