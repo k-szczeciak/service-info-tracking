@@ -33,6 +33,8 @@ public class Item {
 
     private String itemImage;
 
+    private String active;//todo enumerator - true or false
+
     @ManyToOne
     @JoinColumn(name = "station_id")
     private Station station;
@@ -85,6 +87,14 @@ public class Item {
     }
 
     public Item() {
+    }
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
     }
 
     public Long getId() {

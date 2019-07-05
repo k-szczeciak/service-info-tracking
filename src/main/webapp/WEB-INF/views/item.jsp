@@ -46,17 +46,17 @@
 <div class="container">
     <form:form method="post" modelAttribute="item">
         id:
-        <form:input path="id" class="form-control" value="${item.id}" /><br>
+        <input path="id" class="form-control" value="${item.id}" disabled/><br>
         Name:
-        <form:input path="name" class="form-control" value="${item.name}" /><br>
+        <input path="name" class="form-control" value="${item.name}" disabled><br>
         MNR:
-        <form:input path="mnr" class="form-control" value="${item.mnr}"/><br>
+        <input path="mnr" class="form-control" value="${item.mnr}" disabled><br>
         sn:
-        <form:input path="sn" class="form-control" value="${item.sn}"/><br>
+        <input path="sn" class="form-control" value="${item.sn}" disabled><br>
         customer:
-        <form:input path="customer" class="form-control" value="${item.customer}"/><br>
+        <input path="customer" class="form-control" value="${item.customer}" disabled><br>
         photo:
-        <form:input path="itemImage" class="form-control" value="${item.itemImage}"/><br>
+        <input path="itemImage" class="form-control" value="${item.itemImage}" disabled><br>
         <div class="form-group">
             <label for="station_id">Stations:</label>
             <form:select path="station.id" items="${stations}" itemLabel="name" itemValue="id"

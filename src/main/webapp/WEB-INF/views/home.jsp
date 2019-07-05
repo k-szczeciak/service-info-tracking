@@ -59,7 +59,7 @@
             <li class="list-group-item active">${stations[varStatus.index].name},
                     ilość elementów: ${qty[varStatus.index]}</li>
             <c:forEach items="${items}" var = "item">
-                <li class="list-group-item">
+                <li class="list-group-item"  <c:if test="${item.active eq 'true'}"> style="background: lightgreen" </c:if> >
                     <table style="width:100%">
                         <tr>
                             <td>
@@ -71,7 +71,7 @@
                             </td>
                             <td>
                                 <div style="display: inline-block">
-                                    Id: ${item.id}, MNR: ${item.mnr}, Name: ${item.name}
+                                    Id: ${item.id}, MNR: ${item.mnr}, Name: ${item.name}, Active: ${item.active}
                                 </div>
                             </td>
                         </tr>
