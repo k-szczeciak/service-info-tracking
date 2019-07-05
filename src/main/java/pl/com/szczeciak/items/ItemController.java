@@ -109,8 +109,34 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    public String addItem(@ModelAttribute Item item){
+    public String addItem(@RequestParam("file") MultipartFile file,
+                          RedirectAttributes redirectAttributes,
+                          @ModelAttribute Item item){
         item.setStation(stationRepository.getOne((long) 1));
+        item.setActive(false);
+
+        if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+            return "redirect:uploadStatus";
+        }
+
+        try {
+
+            // Get the file and save it somewhere
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            Files.write(path, bytes);
+            item.setItemImage(path.getFileName().toString());
+
+            redirectAttributes.addFlashAttribute("message",
+                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         itemRepository.save(item);
         return "redirect: ../";
     }

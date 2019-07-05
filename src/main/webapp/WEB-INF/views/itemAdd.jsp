@@ -21,16 +21,12 @@
 <%@include file="header.jspf" %>
 
 <div class="container">
-    <form:form method="post" modelAttribute="item">
-        Name:
-        <form:input path="name" class="form-control" /><br>
-        MNR:
-        <form:input path="mnr" class="form-control" /><br>
-        sn:
-        <form:input path="sn" class="form-control" /><br>
-        customer:
-        <form:input path="customer" class="form-control" /><br>
-
+    <form:form method="post" modelAttribute="item" action="${pageContext.request.contextPath}/items/add" enctype="multipart/form-data">
+        <form:input path="name" class="form-control" placeholder = "Name"/><br>
+        <form:input path="mnr" class="form-control" placeholder="MNR"/><br>
+        <form:input path="sn" class="form-control" placeholder="serial number"/><br>
+        <form:input path="customer" class="form-control" placeholder = "customer"/><br>
+        <input type="file" name="file" /><br/>
         <input type="submit" value="Save" />
     </form:form>
 </div>

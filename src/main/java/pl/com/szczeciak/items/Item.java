@@ -1,5 +1,6 @@
 package pl.com.szczeciak.items;
 
+import net.bytebuddy.implementation.bind.annotation.Default;
 import pl.com.szczeciak.comment.Comment;
 import pl.com.szczeciak.doc.Doc;
 import pl.com.szczeciak.operation.Operation;
@@ -32,8 +33,10 @@ public class Item {
     private String customer; // todo: implement customer table hence here should be customer_id instead;
 
     private String itemImage;
+    
+    private Boolean active;//todo enumerator - true or false
 
-    private String active;//todo enumerator - true or false
+
 
     @ManyToOne
     @JoinColumn(name = "station_id")
@@ -89,11 +92,11 @@ public class Item {
     public Item() {
     }
 
-    public String getActive() {
+    public Boolean getActive() {
         return active;
     }
 
-    public void setActive(String active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 
