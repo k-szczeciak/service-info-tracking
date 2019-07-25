@@ -1,5 +1,6 @@
 package pl.com.szczeciak.user;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ public class UserController {
     @Autowired
     EmailServiceImpl emailService;
 
+
     @GetMapping("/all")
     public String showAllUsers(Model model){
         List<User> users = userRepository.findAll();
@@ -42,5 +44,20 @@ public class UserController {
     public String sendMail(Model model, @ModelAttribute Email email){
         emailService.sendSimpleMessage(email.getTo(), email.getSubject(), email.getText());
         return "redirect: /";
+    }
+
+    @GetMapping("/add")
+    public String addUser(Model model){
+        User user = new User();
+        model.addAttribute("user", user);
+
+        return "userAdd";
+    }
+
+    @PostMapping("/add")
+    public String addUser(@ModelAttribute User user){
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+        userRepository.save(user);
+        return "userList";
     }
 }

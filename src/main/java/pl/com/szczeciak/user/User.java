@@ -24,9 +24,17 @@ public class User {
     @NotNull
     private String lastName;
 
+    @NotNull
+    private String username;
+
     @NotBlank
     @Email
     private String email;
+
+    @NotBlank
+    private String password;
+
+    private boolean enabled = true;
 
     @OneToMany(mappedBy = "user")
     private List<Operation> operations;
@@ -35,12 +43,7 @@ public class User {
     private Long station_id; //OneToMany relation  -assignment of one person to station - at the beginning one2one
 
 
-
-
-
-
-
-    /*
+/*
         - one user to several stations
         - permition is only assignet to the corresponding station/s
         - todo entity for permitions
@@ -54,6 +57,7 @@ public class User {
 /* this is saved for future permition entity*/
 //    @NotNull
 //    private Permition permition;
+
 
     public User() {
     }
@@ -82,6 +86,14 @@ public class User {
         this.lastName = lastName;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -89,4 +101,38 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public List<Operation> getOperations() {
+        return operations;
+    }
+
+    public void setOperations(List<Operation> operations) {
+        this.operations = operations;
+    }
+
+    public Long getStation_id() {
+        return station_id;
+    }
+
+    public void setStation_id(Long station_id) {
+        this.station_id = station_id;
+    }
+
+
 }
