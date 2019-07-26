@@ -1,3 +1,20 @@
+/*
+* ToDo:
+*  - zamiast my account = nazwa uzytkowanika
+*  - zwijanie listy w widoku ogolnym
+*  - autoryzacja w wsesji
+*  - przechodzenie pomiedzy widokami dopracowac
+*  - formatowanie obrazow
+*  - walidacja
+*  - sprawdzanie uzytkownika
+*  - statystyki
+*  - wyszukiwania
+*
+*
+*
+* */
+
+
 package pl.com.szczeciak.app;
 
 import org.mindrot.jbcrypt.BCrypt;
