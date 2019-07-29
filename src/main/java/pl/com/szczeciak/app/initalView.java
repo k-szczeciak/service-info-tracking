@@ -64,7 +64,7 @@ public class initalView {
         if (BCrypt.checkpw(password, user.getPassword())){
             model.addAttribute("userSession", user);
             model.addAttribute("isLogged", true);
-            return "redirect:home";
+            return "redirect:/home";
         }
         return "login";
     }
