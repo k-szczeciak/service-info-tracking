@@ -24,6 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import pl.com.szczeciak.items.Item;
 import pl.com.szczeciak.items.ItemRepository;
 import pl.com.szczeciak.station.Station;
@@ -37,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@SessionAttributes("userSession")
 public class initalView {
 
     @Autowired

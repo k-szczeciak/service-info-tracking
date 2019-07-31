@@ -14,8 +14,10 @@ import pl.com.szczeciak.operation.Operation;
 import pl.com.szczeciak.operation.OperationRepository;
 import pl.com.szczeciak.station.Station;
 import pl.com.szczeciak.station.StationRepository;
+import pl.com.szczeciak.user.User;
 import pl.com.szczeciak.user.UserRepository;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -85,15 +87,18 @@ public class ItemController {
     }
 
     @PostMapping("/show/{id}")
-    public String updateItem(@ModelAttribute Item item){
+    public String updateItem(@ModelAttribute Item item, HttpSession session){
         item.setFd(now());
         itemRepository.save(item);
+        User user = (User) session.getAttribute("userSession");
 
         Operation operation = new Operation();
         operation.setCreated(now());
         operation.setItem(item);
         operation.setStation(item.getStation());
-        operation.setUser(userRepository.findById((long) 1));
+//        operation.setUser(userRepository.findById((long) 1));
+        operation.setUser(user);
+
 
         operationRepository.save(operation);
 
