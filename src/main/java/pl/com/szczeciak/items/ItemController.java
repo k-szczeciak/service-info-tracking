@@ -17,6 +17,7 @@ import pl.com.szczeciak.station.StationRepository;
 import pl.com.szczeciak.user.User;
 import pl.com.szczeciak.user.UserRepository;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -87,7 +88,8 @@ public class ItemController {
     }
 
     @PostMapping("/show/{id}")
-    public String updateItem(@ModelAttribute Item item, HttpSession session){
+    public String updateItem(@ModelAttribute Item item, HttpSession session, HttpServletRequest request){
+        String refer = request.getHeader("Referer");
         item.setFd(now());
         itemRepository.save(item);
         User user = (User) session.getAttribute("userSession");
@@ -98,11 +100,9 @@ public class ItemController {
         operation.setStation(item.getStation());
 //        operation.setUser(userRepository.findById((long) 1));
         operation.setUser(user);
-
-
         operationRepository.save(operation);
 
-        return "redirect: /";
+        return "redirect:" + refer;
     }
 
     @GetMapping("/add")

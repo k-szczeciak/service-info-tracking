@@ -32,6 +32,7 @@ import pl.com.szczeciak.station.StationRepository;
 import pl.com.szczeciak.user.User;
 import pl.com.szczeciak.user.UserRepository;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +52,11 @@ public class initalView {
     UserRepository userRepository;
 
     @GetMapping("/")
-    public String login(){
+    public String login(HttpSession ses, Model model){
+        //automatic log out
+        User user = (User)ses.getAttribute("userSession");
+        model.addAttribute("userSession", 1);
+        user = (User)ses.getAttribute("userSession");
         return "login";
     }
 

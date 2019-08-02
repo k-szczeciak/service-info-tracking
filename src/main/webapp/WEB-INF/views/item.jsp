@@ -56,7 +56,7 @@
         customer:
         <form:input path="customer" class="form-control" value="${item.customer}" /><br>
         photo:
-        <form:input path="itemImage" class="form-control" value="${item.itemImage}" disabled="true"/><br>
+        <form:input path="itemImage" class="form-control" value="${item.itemImage}"/><br>
         <div class="form-group">
             <label for="station_id">Stations:</label>
             <form:select path="station.id" items="${stations}" itemLabel="name" itemValue="id"
