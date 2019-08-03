@@ -22,30 +22,48 @@
 
 
 <div style="width: 80%" class = "container">
+    <h3>Lista urządzeń</h3>
+    <input class="form-control" id="myInput" type="text" placeholder="Wyszukaj...">
+    <br>
     <table class="table table-hover">
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">name</th>
-            <th scope="col">mnr</th>
-            <th scope="col">fd</th>
-            <th scope="col">station id</th>
-            <th scope="col">image</th>
-            <th scope="col">...</th>
-        </tr>
+        <head>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">mnr</th>
+                <th scope="col">fd</th>
+                <th scope="col">station id</th>
+                <th scope="col">image</th>
+                <th scope="col">...</th>
+            </tr>
+        </head>
 
         <c:forEach items="${items}" var="item" varStatus="theCount">
-            <tr>
-                <td scope="row">${item.id}</td>
-                <td scope="row">${item.name}</td>
-                <td scope="row">${item.mnr}</td>
-                <td scope="row">${item.fd}</td>
-                <td scope="row">${item.station.id}</td>
-                <td scope="row"><img src="<c:url value="/files/${item.itemImage}" />" border=3 height=100 width=160 /> </td>
-                <td scope="row"><a href = "/items/show/${item.id}"> View </a></td>
-            </tr>
+            <tbody id="myTable">
+                <tr>
+                    <td scope="row">${item.id}</td>
+                    <td scope="row">${item.name}</td>
+                    <td scope="row">${item.mnr}</td>
+                    <td scope="row">${item.fd}</td>
+                    <td scope="row">${item.station.id}</td>
+                    <td scope="row"><img src="<c:url value="/files/${item.itemImage}" />" border=3 height=100 width=160 /> </td>
+                    <td scope="row"><a href = "/items/show/${item.id}"> View </a></td>
+                </tr>
+            </tbody>
         </c:forEach>
     </table>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
