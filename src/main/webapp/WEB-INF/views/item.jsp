@@ -72,7 +72,7 @@
 <div class = "container">
 
     <div style="width: 80%" class="container">
-        <table class="table table-hover">Operations:
+        <table class="table table-hover">Operacje:
             <tr>
                 <th scope="col">created</th>
                 <th scope="col">item</th>
@@ -98,7 +98,7 @@
 <div class = "container">
 
     <div style="width: 80%" class="container">
-        <table class="table table-hover">Comments:
+        <table class="table table-hover">komentarze:
             <tr>
                 <th scope="col">created</th>
                 <th scope="col">text</th>
@@ -120,24 +120,25 @@
 
 
 <!-- docs -->
-<!-- comments -->
+<!-- documents -->
 <div class = "container">
 
     <div style="width: 80%" class="container">
-        <table class="table table-hover">Docs:
+        <table class="table table-hover">Dokumenty:
             <tr>
-                <th scope="col">created</th>
-                <th scope="col">description</th>
-                <th scope="col">type</th>
-                <th scope="col">...</th>
+                <th scope="col">opis dokumentu:</th>
+                <th scope="col">nazwa dokumentu</th>
+                <%--<th scope="col">...</th>--%>
+                <th scope="col">data utworzenia:</th>
             </tr>
 
             <c:forEach items="${docs}" var="doc" varStatus="theCount">
                 <tr>
-                    <td scope="row">${doc.created}</td>
                     <td scope="row">${doc.description}</td>
-                    <td scope="row" style="text-align: left">${doc.docType}</td>
-                    <td scope="row"><a href="<c:url value="/files/${doc.path}" />"> download </a></td>
+                    <%--<td scope="row" style="text-align: left">${doc.docType}</td>--%>
+                <%--<td scope="row"><a href="<c:url value="/files/${doc.path}" />"> download </a></td>--%>
+                    <td scope="row"><a href="<c:url value="/files/${doc.path}" />">${doc.path}</a></td>
+                    <td scope="row">${doc.created}</td>
                 </tr>
             </c:forEach>
         </table>

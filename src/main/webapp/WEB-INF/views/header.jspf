@@ -27,7 +27,7 @@
                         Stations
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">All Stations</a>
+                        <a class="dropdown-item" href="/stations/all">All Stations</a>
                         <a class="dropdown-item" href="/stations/add">Add Station</a>
                         <c:forEach items="${stations}" var="station" varStatus="theCount">
                             <a class="dropdown-item" href="#">${station.name}</a>

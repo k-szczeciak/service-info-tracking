@@ -23,26 +23,44 @@
 
 
 <div style="width: 80%" class = "container">
+    <h3>Lista komentarzy:</h3>
+    <input class="form-control" id="myInput" type="text" placeholder="Wyszukaj...">
+    <br>
     <table class="table table-hover">
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">created</th>
-            <th scope="col">description</th>
-            <th scope="col">item id</th>
-            <th scope="col">...</th>
-        </tr>
-
-        <c:forEach items="${comments}" var="comment" varStatus="theCount">
+        <head>
             <tr>
-                <td scope="row">${comment.id}</td>
-                <td scope="row">${comment.created}</td>
-                <td scope="row">${comment.description}</td>
-                <td scope="row">${comment.item.id}</td>
-                <td scope="row">  <a href="/comments/edit/${comment.id}"> edit </a> </td>
+                <th scope="col">id</th>
+                <th scope="col">created</th>
+                <th scope="col">description</th>
+                <th scope="col">item id</th>
+                <th scope="col">...</th>
             </tr>
-        </c:forEach>
+        </head>
+
+        <tbody id="myTable">
+            <c:forEach items="${comments}" var="comment" varStatus="theCount">
+                <tr>
+                    <td scope="row">${comment.id}</td>
+                    <td scope="row">${comment.created}</td>
+                    <td scope="row">${comment.description}</td>
+                    <td scope="row">${comment.item.id}</td>
+                    <td scope="row">  <a href="/comments/edit/${comment.id}"> edit </a> </td>
+                </tr>
+            </c:forEach>
+        </tbody>
     </table>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

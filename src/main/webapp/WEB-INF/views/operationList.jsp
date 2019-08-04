@@ -21,26 +21,44 @@
 <%@include file="header.jspf" %>
 
 <div style="width: 80%" class="container">
+    <h3>Lista operacji:</h3>
+    <input class="form-control" id="myInput" type="text" placeholder="Wyszukaj...">
+    <br>
     <table class="table table-hover">
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">created</th>
-            <th scope="col">item id</th>
-            <th scope="col">user name</th>
-            <th scope="col">station name</th>
-        </tr>
-
-        <c:forEach items="${operations}" var="operation" varStatus="theCount">
+        <thead>
             <tr>
-                <td scope="row">${operation.id}</td>
-                <td scope="row">${operation.created}</td>
-                <td scope="row">${operation.item.id}</td>
-                <td scope="row">${operation.user.firstName}</td>
-                <td scope="row">${operation.station.name}</td>
+                <th scope="col">numer operacji</th>
+                <th scope="col">utworzono dnia</th>
+                <th scope="col">id urzadzenia</th>
+                <th scope="col">użytkownik</th>
+                <th scope="col">nazwa stanowiska</th>
             </tr>
-        </c:forEach>
+        </thead>
+
+        <tbody id="myTable">
+            <c:forEach items="${operations}" var="operation" varStatus="theCount">
+                <tr>
+                    <td scope="row">${operation.id}</td>
+                    <td scope="row">${operation.created}</td>
+                    <td scope="row">${operation.item.id}</td>
+                    <td scope="row">${operation.user.firstName}, ${operation.user.lastName}</td>
+                    <td scope="row">${operation.station.name}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
     </table>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

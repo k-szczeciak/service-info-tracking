@@ -4,6 +4,12 @@
   Date: 02/06/2019
   Time: 11:58
   To change this template use File | Settings | File Templates.
+
+  ToDo:
+  W docL:ist.jsp - link do urzadzenia, wyrzucic kolumne dodano, stworzyc linki do podgladu / edycji, dokoonczyc CRUD,
+Doodac sortowanie
+
+
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -21,26 +27,46 @@
 <%@include file="header.jspf" %>
 
 <div style="width: 80%" class="container">
+    <h3>Lista dokumentów:</h3>
+    <input class="form-control" id="myInput" type="text" placeholder="Wyszukaj...">
+    <br>
     <table class="table table-hover">
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">descriprion</th>
-            <th scope="col">path</th>
-            <th scope="col">type</th>
-            <th scope="col">created</th>
-        </tr>
-
-        <c:forEach items="${docs}" var="doc" varStatus="theCount">
+        <thead>
             <tr>
-                <td scope="row">${doc.id}</td>
-                <td scope="row">${doc.description}</td>
-                <td scope="row">${doc.path}</td>
-                <td scope="row">${doc.docType}</td>
-                <td scope="row">${doc.created}</td>
+                <th scope="col">id urzadzenia:</th>
+                <%--<th scope="col">urzadzenie:</th>--%>
+                <th scope="col">opis</th>
+                <th scope="col">nazwa dokumentu</th>
+                <%--<th scope="col">typ dokumentu</th>--%>
+                <th scope="col">data utworzenia</th>
             </tr>
-        </c:forEach>
+        </thead>
+
+        <tbody id="myTable">
+            <c:forEach items="${docs}" var="doc" varStatus="theCount">
+                <tr>
+                    <td scope="row">${doc.item.id}</td>
+                    <%--<td scope="row">${doc.item.name}</td>--%>
+                    <td scope="row">${doc.description}</td>
+                    <td scope="row"><a href="<c:url value="/files/${doc.path}" />">${doc.path}</a></td>
+                    <%--<td scope="row">${doc.docType}</td>--%>
+                    <td scope="row">${doc.created}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
     </table>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

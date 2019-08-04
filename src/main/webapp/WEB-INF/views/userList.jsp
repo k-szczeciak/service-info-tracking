@@ -21,26 +21,42 @@
 <%@include file="header.jspf" %>
 
 <div style="width: 80%" class="container">
+    <h3>Lista użtkowników:</h3>
+    <input class="form-control" id="myInput" type="text" placeholder="Wyszukaj...">
+    <br>
     <table class="table table-hover">
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">imię</th>
-            <th scope="col">nazwisko</th>
-            <th scope="col">...</th>
-        </tr>
-
-        <c:forEach items="${users}" var="user" varStatus="theCount">
+        <thead>
             <tr>
-                <td scope="row">${user.id}</td>
-                <td scope="row">${user.firstName}</td>
-                <td scope="row">${user.lastName}</td>
-                <td scope="row"><a href = # > View </a> <a href = # > edit </a></td>
+                <th scope="col">id</th>
+                <th scope="col">imię</th>
+                <th scope="col">nazwisko</th>
+                <th scope="col">...</th>
             </tr>
-        </c:forEach>
+        </thead>
+
+        <tbody id="myTable">
+            <c:forEach items="${users}" var="user" varStatus="theCount">
+                <tr>
+                    <td scope="row">${user.id}</td>
+                    <td scope="row">${user.firstName}</td>
+                    <td scope="row">${user.lastName}</td>
+                    <td scope="row"><a href = # > View </a> <a href = # > edit </a></td>
+                </tr>
+            </c:forEach>
+        </tbody>
     </table>
 </div>
 
-
+<script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

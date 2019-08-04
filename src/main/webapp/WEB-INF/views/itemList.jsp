@@ -38,19 +38,19 @@
             </tr>
         </head>
 
-        <c:forEach items="${items}" var="item" varStatus="theCount">
-            <tbody id="myTable">
-                <tr>
-                    <td scope="row">${item.id}</td>
-                    <td scope="row">${item.name}</td>
-                    <td scope="row">${item.mnr}</td>
-                    <td scope="row">${item.fd}</td>
-                    <td scope="row">${item.station.id}</td>
-                    <td scope="row"><img src="<c:url value="/files/${item.itemImage}" />" border=3 height=100 width=160 /> </td>
-                    <td scope="row"><a href = "/items/show/${item.id}"> View </a></td>
-                </tr>
-            </tbody>
-        </c:forEach>
+        <tbody id="myTable">
+            <c:forEach items="${items}" var="item" varStatus="theCount">
+                    <tr>
+                        <td scope="row">${item.id}</td>
+                        <td scope="row">${item.name}</td>
+                        <td scope="row">${item.mnr}</td>
+                        <td scope="row">${item.fd}</td>
+                        <td scope="row">${item.station.id}</td>
+                        <td scope="row"><img src="<c:url value="/files/${item.itemImage}" />" border=3 height=100 width=160 /> </td>
+                        <td scope="row"><a href = "/items/show/${item.id}"> View </a></td>
+                    </tr>
+            </c:forEach>
+        </tbody>
     </table>
 </div>
 
