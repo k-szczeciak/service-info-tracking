@@ -22,7 +22,7 @@ import static java.time.LocalDate.now;
 public class DocController {
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "/Users/krzysztofszczeciak/workspace/_Project/src/main/docFiles/";
+    private static String UPLOADED_FOLDER = "/tmp/docFiles/";
 
     @Autowired
     DocRepository docRepository;

@@ -198,7 +198,7 @@
 <script>
     //var qrcode = new QRCode("qrcode1");
     var qrcode = new QRCode("qrcode1", {
-        text: "localhost:8080/items/show/${item.id}",
+        text: "www.serviceinfotracking.com/items/show/${item.id}",
         width: 256,
         height: 256,
         colorDark : "#000000",

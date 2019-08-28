@@ -32,7 +32,8 @@ import static java.time.LocalDateTime.now;
 public class ItemController {
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "/Users/krzysztofszczeciak/workspace/_Project/src/main/docFiles/";
+//    private static String UPLOADED_FOLDER = "/Users/krzysztofszczeciak/workspace/_Project/src/main/docFiles/";
+    private static String UPLOADED_FOLDER = "/tmp/docFiles/";
 
     @Autowired
     ItemRepository itemRepository;
@@ -120,6 +121,8 @@ public class ItemController {
         item.setStation(stationRepository.getOne((long) 1));
         item.setActive(false);
 
+//        String result = System.getProperty("user.dir");
+
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
             return "redirect:uploadStatus";
@@ -135,8 +138,7 @@ public class ItemController {
 
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
-
-
+//            result = "w kwadracie";
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -144,6 +146,7 @@ public class ItemController {
 
         itemRepository.save(item);
         return "redirect: ../";
+//        return "dupa + ..." + result;
     }
 
     @GetMapping("/uploadFiles/{id}")
