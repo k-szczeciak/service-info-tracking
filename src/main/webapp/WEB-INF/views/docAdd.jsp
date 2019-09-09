@@ -15,6 +15,7 @@
     <link href="<c:url value="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
     <script type="text/javascript" src="/resources/js/qrcode.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>add doc</title>
 </head>
 <body>

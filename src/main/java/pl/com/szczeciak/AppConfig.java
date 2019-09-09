@@ -100,16 +100,16 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
         registry.addResourceHandler("/files/**")
 //                .addResourceLocations("file:/Users/krzysztofszczeciak/Downloads/");
-//                .addResourceLocations("file:/Users/krzysztofszczeciak/workspace/_Project/src/main/docFiles/");
-                .addResourceLocations("file:/tmp/docFiles/");
+                .addResourceLocations("file:/Users/krzysztofszczeciak/workspace/_Project/src/main/docFiles/");
+//                .addResourceLocations("file:/tmp/docFiles/");
     }
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        //dataSource.setUrl("jdbc:mysql://localhost:3306/projekt?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-        dataSource.setUrl("jdbc:mysql://project01db.cfrwjeysn1sh.eu-west-1.rds.amazonaws.com:3306/project?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/projekt?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+//        dataSource.setUrl("jdbc:mysql://project01db.cfrwjeysn1sh.eu-west-1.rds.amazonaws.com:3306/project?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
         dataSource.setUsername("root");
         dataSource.setPassword("coderslab");
         return dataSource;
@@ -118,8 +118,8 @@ public class AppConfig implements WebMvcConfigurer {
     Properties additionalProperties() {
         Properties properties = new Properties();
 //        properties.setProperty("hibernate.hbm2ddl.auto", "drop-and-create");
-        properties.setProperty("hibernate.hbm2ddl.auto", "update"); //none
-//        properties.setProperty("hibernate.hbm2ddl.auto", "none"); //none
+//        properties.setProperty("hibernate.hbm2ddl.auto", "update"); //none
+        properties.setProperty("hibernate.hbm2ddl.auto", "none"); //none
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.format_sql", "true");
