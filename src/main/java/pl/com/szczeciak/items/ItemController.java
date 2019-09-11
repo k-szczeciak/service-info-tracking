@@ -133,11 +133,11 @@ public class ItemController {
             //todo - walidacja typu pliku
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
-            Path pathDir = Paths.get(UPLOADED_FOLDER + "/" + Long.toString(item.getId()) + "/");
+            //Path pathDir = Paths.get(UPLOADED_FOLDER + "/" + Long.toString(item.getId()) + "/");
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-            if (!Files.exists(pathDir)){
+            /*if (!Files.exists(pathDir)){
                 Files.createDirectory(pathDir);
-            }
+            }*/
             Files.write(path, bytes);
             item.setItemImage(path.getFileName().toString());
 
