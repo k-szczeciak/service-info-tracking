@@ -22,7 +22,10 @@ import static java.time.LocalDate.now;
 public class DocController {
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "/tmp/docFiles/";
+//    private static String UPLOADED_FOLDER = "/tmp/docFiles/";
+    private static String UPLOADED_FOLDER = "/Users/krzysztofszczeciak/workspace/_Project/src/main/docFiles/";
+
+
 
     @Autowired
     DocRepository docRepository;
@@ -60,7 +63,17 @@ public class DocController {
 
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            Path pathDir = Paths.get(UPLOADED_FOLDER + "/" + Long.toString(item_id) + "/");
+            Path path = Paths.get(UPLOADED_FOLDER + "/" + Long.toString(item_id) + "/" + file.getOriginalFilename());
+            if (!Files.exists(pathDir)){
+                Files.createDirectory(pathDir);
+            }
+            int i = 0;
+            while(Files.exists(path)){
+                i++;
+                path = Paths.get(UPLOADED_FOLDER + "/" + Long.toString(item_id) + "/" + Integer.toString(i) +
+                        "_" + file.getOriginalFilename());
+            }
             Files.write(path, bytes);
 
             redirectAttributes.addFlashAttribute("message",

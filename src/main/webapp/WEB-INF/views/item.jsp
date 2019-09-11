@@ -138,7 +138,7 @@
                     <td scope="row">${doc.description}</td>
                     <%--<td scope="row" style="text-align: left">${doc.docType}</td>--%>
                 <%--<td scope="row"><a href="<c:url value="/files/${doc.path}" />"> download </a></td>--%>
-                    <td scope="row"><a href="<c:url value="/files/${doc.path}" />">${doc.path}</a></td>
+                    <td scope="row"><a href="<c:url value="/files/${item.id}/${doc.path}" />">${doc.path}</a></td>
                     <td scope="row">${doc.created}</td>
                 </tr>
             </c:forEach>

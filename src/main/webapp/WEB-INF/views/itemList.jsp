@@ -26,7 +26,7 @@
     <h3>Lista urządzeń</h3>
     <input class="form-control" id="myInput" type="text" placeholder="Wyszukaj...">
     <br>
-    <table class="table table-hover">
+    <table class="table table-responsive table-hover">
         <head>
             <tr>
                 <th scope="col">id</th>
