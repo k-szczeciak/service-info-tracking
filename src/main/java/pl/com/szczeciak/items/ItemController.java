@@ -151,7 +151,7 @@ public class ItemController {
 
         itemRepository.save(item);
         return "redirect: ../";
-//        return "dupa + ..." + result;
+
     }
 
     @GetMapping("/uploadFiles/{id}")
@@ -194,7 +194,7 @@ public class ItemController {
             e.printStackTrace();
         }
 
-        return "redirect: /items/all";
+        return "redirect: ../show/" + id;
     }
 
 

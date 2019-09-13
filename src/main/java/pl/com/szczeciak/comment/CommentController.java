@@ -29,26 +29,26 @@ public class CommentController {
         return "commentList";
     }
 
-    @GetMapping("/add/{id}")
-    public String addComment(Model model, @PathVariable long id){
+    @GetMapping("/add/{item_id}")
+    public String addComment(Model model, @PathVariable long item_id){
         Comment comment = new Comment();
         model.addAttribute("comment", comment);
 
-        Item item = itemRepository.findById(id);
+        Item item = itemRepository.findById(item_id);
 
         model.addAttribute("item", item);
 
-        model.addAttribute("id", id);
+        //model.addAttribute("id", id);
         return "commentAdd";
     }
 
-    @PostMapping("/add/{id}")
-    public String addComment(Model model, @ModelAttribute Comment comment){
+    @PostMapping("/add/{item_id}")
+    public String addComment(Model model, @ModelAttribute Comment comment, @PathVariable long item_id){
 
         String result = comment.getDescription().replaceAll("\n", "<br>");
         comment.setDescription(result);
         commentRepository.save(comment);
-        return "redirect: /";
+        return "redirect: ../../items/show/" + item_id;
     }
 
     @GetMapping("/edit/{id}")
