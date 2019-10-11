@@ -89,7 +89,7 @@ public class DocController {
             e.printStackTrace();
         }
 
-        return "redirect: /";
+        return "redirect: ../../items/show/" + item_id;
 
     }
 

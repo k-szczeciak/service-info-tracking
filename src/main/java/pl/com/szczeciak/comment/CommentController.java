@@ -56,8 +56,11 @@ public class CommentController {
         Comment comment = commentRepository.findCommentById(id);
         model.addAttribute("comment", comment);
 
+
+/*
         Item item = itemRepository.findById(id);
         model.addAttribute("item", item);
+        */
 
         return "comment";
     }
@@ -65,10 +68,12 @@ public class CommentController {
     @PostMapping("/edit/{id}")
     public String editComment(Model model, @ModelAttribute Comment comment){
         String result = comment.getDescription().replace("\n", "<br>");
+        Item item = comment.getItem();
+        long item_id = item.getId();
         comment.setDescription(result);
         comment.setCreated(now());
         commentRepository.save(comment);
-        return "redirect: /";
+        return "redirect: ../../items/show/" + item_id;
     }
 
 

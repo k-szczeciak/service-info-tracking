@@ -101,7 +101,7 @@
     <div style="width: 80%" class="container">
         <table class="table table-hover">komentarze:
             <tr>
-                <th scope="col">created</th>
+                <th scope="col">created/modyfied</th>
                 <th scope="col">text</th>
                 <th scope="col">...</th>
             </tr>
