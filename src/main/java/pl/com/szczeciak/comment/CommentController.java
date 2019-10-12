@@ -56,12 +56,6 @@ public class CommentController {
         Comment comment = commentRepository.findCommentById(id);
         model.addAttribute("comment", comment);
 
-
-/*
-        Item item = itemRepository.findById(id);
-        model.addAttribute("item", item);
-        */
-
         return "comment";
     }
 

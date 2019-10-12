@@ -124,12 +124,14 @@ public class ItemController {
 //        String result = System.getProperty("user.dir");
 
 
+        item.setActive(true);
         itemRepository.save(item);
 
+        long item_id = item.getId();
         // get new item id
 
 
-/*
+
 
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
@@ -141,23 +143,23 @@ public class ItemController {
             //todo - walidacja typu pliku
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
-            Path pathDir = Paths.get(UPLOADED_FOLDER + "/" + Long.toString(item.getId()) + "/");
-            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            Path pathDir = Paths.get(UPLOADED_FOLDER + Long.toString(item.getId()) + "/");
+            Path path = Paths.get(pathDir + "/" + file.getOriginalFilename());
             if (!Files.exists(pathDir)){
                 Files.createDirectory(pathDir);
             }
             Files.write(path, bytes);
             item.setItemImage(path.getFileName().toString());
+            itemRepository.save(item);
 
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-*/
+
+
 
         return "redirect: ../home";
 

@@ -24,7 +24,7 @@
 
 <div class = "container">
     <%--<img src="http://lorempixel.com/256/256/transport" class = "rounded float-right" alt="...">--%>
-        <img alt="image"  src="<c:url value="/files/${item.itemImage}" />"
+        <img alt="image"  src="<c:url value="/files/${item.id}/${item.itemImage}" />"
              class = "rounded float-right" alt="..." style="height: 256px; width:360px">
     <div class="container" id="qrcode1"></div><br>
 </div>
