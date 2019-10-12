@@ -175,12 +175,15 @@ public class ItemController {
     @PostMapping("/uploadFiles/{id}")
     public String uploadFiles(@RequestParam("file") MultipartFile file,
                               RedirectAttributes redirectAttributes,
-                              @PathVariable Long id){
+                              @PathVariable long id){
 
         //todo jak zamienic @PathVariable na Post-a
         //todo validator do plikow: wielkosc, typ i czy jest
         //todo to wrzuci do serwisu
         //todo przekierowanie zalezne od pubktu startu
+
+        //todo 2019.10.12 - upload files zamienic na edit file w docs lub edit image w items ???
+        Item item = itemRepository.findById(id);
 
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
@@ -191,13 +194,19 @@ public class ItemController {
 
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            //Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+
+            Path pathDir = Paths.get(UPLOADED_FOLDER + Long.toString(item.getId()) + "/");
+            Path path = Paths.get(pathDir + "/" + file.getOriginalFilename());
+            if (!Files.exists(pathDir)){
+                Files.createDirectory(pathDir);
+            }
             Files.write(path, bytes);
 
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
 
-            Item item = itemRepository.findById((long)id);
+            //Item item = itemRepository.findById((long)id);
             item.setItemImage(path.getFileName().toString());
             itemRepository.save(item);
 
