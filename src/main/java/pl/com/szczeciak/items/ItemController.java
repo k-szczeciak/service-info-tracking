@@ -117,11 +117,18 @@ public class ItemController {
     @PostMapping("/add")
     public String addItem(@RequestParam("file") MultipartFile file,
                           RedirectAttributes redirectAttributes,
-                          @ModelAttribute Item item){
+                          @ModelAttribute Item item, HttpSession session, HttpServletRequest request){
+
+
+        String refer = request.getHeader("Referer");
         item.setStation(stationRepository.getOne((long) 1));
         item.setActive(false);
 
 //        String result = System.getProperty("user.dir");
+
+        User user = (User) session.getAttribute("userSession");
+
+
 
 
         item.setActive(true);
@@ -129,6 +136,13 @@ public class ItemController {
 
         long item_id = item.getId();
         // get new item id
+
+        Operation operation = new Operation();
+        operation.setCreated(now());
+        operation.setItem(item);
+        operation.setStation(item.getStation());
+        operation.setUser(user);
+        operationRepository.save(operation);
 
 
 
@@ -143,7 +157,7 @@ public class ItemController {
             //todo - walidacja typu pliku
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
-            Path pathDir = Paths.get(UPLOADED_FOLDER + Long.toString(item.getId()) + "/");
+            Path pathDir = Paths.get(UPLOADED_FOLDER + item.getId() + "/");
             Path path = Paths.get(pathDir + "/" + file.getOriginalFilename());
             if (!Files.exists(pathDir)){
                 Files.createDirectory(pathDir);
@@ -161,7 +175,7 @@ public class ItemController {
 
 
 
-        return "redirect: ../home";
+        return "redirect: " + refer;
 
     }
 
@@ -196,7 +210,7 @@ public class ItemController {
             byte[] bytes = file.getBytes();
             //Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
 
-            Path pathDir = Paths.get(UPLOADED_FOLDER + Long.toString(item.getId()) + "/");
+            Path pathDir = Paths.get(UPLOADED_FOLDER + item.getId() + "/");
             Path path = Paths.get(pathDir + "/" + file.getOriginalFilename());
             if (!Files.exists(pathDir)){
                 Files.createDirectory(pathDir);

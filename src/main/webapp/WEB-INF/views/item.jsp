@@ -118,6 +118,10 @@
 </div>
 <br><br>
 
+<div class="container">
+    <a href="/comments/add/${item.id}" >Add comment</a>
+</div>
+
 
 
 <!-- docs -->
@@ -157,14 +161,11 @@
 </div>--%>
 
 
-
-<div class="container">
-    <a href="/comments/add/${item.id}" >Add comment</a>
-</div>
-
+<%--
 <div class="container">
     <a href="/files/${item.itemImage}">download image</a><br>
 </div>
+-->
 
 <%--<div class="container">
     <form:form method="post" modelAttribute="comment">
