@@ -44,7 +44,8 @@
 <!-- Todo: czy jest done azeby tam zamieszczac komentarze jak cos zostalo zrobione np liniki zewnetrzne -->
 
 <!-- Item field -->
-<div class="container">
+
+<div class="container" id = "stationList">
     <form:form method="post" modelAttribute="item">
         <label for="id">Item Id:</label>
         <form:input path="id" class="form-control" value="${item.id}" id="id" disabled="true"/><br>
@@ -65,13 +66,43 @@
         </div>
         <input type="submit" value="Save" />
     </form:form>
+    <form:form method="post" modelAttribute="item">
+        <form:input type = "hidden" path="id" value="${item.id}"/>
+        <form:input type = "hidden" path="name" value="${item.name}" />
+        <form:input type = "hidden" path="mnr" value="${item.mnr}" />
+        <form:input type = "hidden" path="sn" value="${item.sn}" />
+        <form:input type = "hidden" path="customer" value="${item.customer}" />
+        <form:input type = "hidden" path="itemImage" value="${item.itemImage}"/>
+        <form:input type = "hidden" path="station.id"  value="${item.station.id + 1}"/>
+        <input class="btn btn-primary"  type="submit" value="Next" />
+    </form:form>
+    <p>
+        dodac tu jeszcze modala przy przechodzneiu
+    </p>
 </div>
+
+<%--<div class="container" id = "stationList">
+    <form:form method="post" modelAttribute="item">
+        <form:input type = "hidden" path="id" class="form-control" value="${item.id}"/><br>
+        <form:input type = "hidden" path="name" class="form-control" value="${item.name}" /><br>
+        <form:input type = "hidden" path="mnr" class="form-control" value="${item.mnr}" /><br>
+        <form:input type = "hidden" path="sn" class="form-control" value="${item.sn}" /><br>
+        <form:input type = "hidden" path="customer" class="form-control" value="${item.customer}" /><br>
+        <form:input type = "hidden" path="itemImage" class="form-control" value="${item.itemImage}"/><br>
+        <form:input type = "hidden" path="station.id" class="form-control" value="${item.station.id + 1}"/><br>
+        <input class="btn btn-primary"  type="submit" value="Next" />
+    </form:form>
+    <p>
+        dodac tu jeszcze modala przy przechodzneiu
+    </p>
+</div>--%>
+
+
 
 
 <br>
 <!-- operations-->
 <div class = "container">
-
     <div style="width: 80%" class="container">
         <table class="table table-hover">Operacje:
             <tr>
@@ -92,14 +123,13 @@
         </table>
     </div>
 </div><br>
-
 <br>
 
 <!-- comments -->
 <div class = "container">
 
     <div style="width: 80%" class="container">
-        <table class="table table-hover">komentarze:
+        <table class="table table-hover table-nonfluid">komentarze:
             <tr>
                 <th scope="col">created/modyfied</th>
                 <th scope="col">text</th>
@@ -190,8 +220,6 @@
     Comments:
 
 </div>--%>
-
-
 
 
 

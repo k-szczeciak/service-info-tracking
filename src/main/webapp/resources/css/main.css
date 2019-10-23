@@ -30,3 +30,7 @@ header {
 .table-hover {
     text-align: center;
 }
+
+.table-nonfluid {
+    width: auto !important;
+}
