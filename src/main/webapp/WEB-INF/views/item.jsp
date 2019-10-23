@@ -74,11 +74,31 @@
         <form:input type = "hidden" path="customer" value="${item.customer}" />
         <form:input type = "hidden" path="itemImage" value="${item.itemImage}"/>
         <form:input type = "hidden" path="station.id"  value="${item.station.id + 1}"/>
-        <input class="btn btn-primary"  type="submit" value="Next" />
+        <input class="btn btn-primary"  type="submit" value="${stations[item.station.id].name}" aria-disabled="false"/>
     </form:form>
     <p>
         dodac tu jeszcze modala przy przechodzneiu
+        oraz zabezpieczenie przy ostatnim - po impolementacji archiwum
     </p>
+    <form:form method="post" modelAttribute="item">
+        <form:input type = "hidden" path="id" value="${item.id}"/>
+        <form:input type = "hidden" path="name" value="${item.name}" />
+        <form:input type = "hidden" path="mnr" value="${item.mnr}" />
+        <form:input type = "hidden" path="sn" value="${item.sn}" />
+        <form:input type = "hidden" path="customer" value="${item.customer}" />
+        <form:input type = "hidden" path="itemImage" value="${item.itemImage}"/>
+        <form:input type = "hidden" path="station.id"  value="${item.station.id}"/>
+        <c:if test="${item.active == true}">
+            <form:input type = "hidden" path="active"  value="0" />
+            <input class="btn btn-primary"  type="submit" value="deactivate"/>
+        </c:if>
+        <c:if test="${item.active == false}">
+            <form:input type = "hidden" path="active"  value="1" />
+            <input class="btn btn-primary"  type="submit" value="activate"/>
+        </c:if>
+        ${item.active}
+
+    </form:form>
 </div>
 
 <%--<div class="container" id = "stationList">
