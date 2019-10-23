@@ -56,11 +56,13 @@
 </c:forEach>--%>
 <div class="container">
     <c:forEach items="${itemArray}" var = "items" varStatus="varStatus">
-        <div class = "container" style = "width: 22em; display: inline-block; vertical-align: top;">
-            <li class="list-group-item active" data-toggle="collapse" href="#itemsCollapse${varStatus.index}"
+        <div class = "container" style = "width: 22em; display: inline-block; vertical-align: top; padding-bottom: 10px">
+            <li class="list-group-item active d-flex justify-content-between align-items-center" data-toggle="collapse" href="#itemsCollapse${varStatus.index}"
                 role="button" aria-expanded="false" aria-controls="itemsCollapse${varStatus.index}">
-                    ${stations[varStatus.index].name},
-                    ilość elementów: ${qty[varStatus.index]}</li>
+                    ${stations[varStatus.index].name}
+                    <%--ilość elementów: ${qty[varStatus.index]}--%>
+                        <span class="badge badge-primary badge-pill">${qty[varStatus.index]}/${qty[varStatus.index]}</span>
+            </li>
             <div class="collapse" id="itemsCollapse${varStatus.index}">
                 <c:forEach items="${items}" var = "item">
                     <li class="list-group-item"  <c:if test="${item.active eq 'true'}"> style="background: lightgreen" </c:if> >
@@ -80,6 +82,7 @@
                                 </td>
                             </tr>
                         </table>
+                        <small>3 days ago</small>
                     </li>
                 </c:forEach><br>
             </div>
