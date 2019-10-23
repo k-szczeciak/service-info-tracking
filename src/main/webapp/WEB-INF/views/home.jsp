@@ -57,28 +57,32 @@
 <div class="container">
     <c:forEach items="${itemArray}" var = "items" varStatus="varStatus">
         <div class = "container" style = "width: 22em; display: inline-block; vertical-align: top;">
-            <li class="list-group-item active">${stations[varStatus.index].name},
+            <li class="list-group-item active" data-toggle="collapse" href="#itemsCollapse${varStatus.index}"
+                role="button" aria-expanded="false" aria-controls="itemsCollapse${varStatus.index}">
+                    ${stations[varStatus.index].name},
                     ilość elementów: ${qty[varStatus.index]}</li>
-            <c:forEach items="${items}" var = "item">
-                <li class="list-group-item"  <c:if test="${item.active eq 'true'}"> style="background: lightgreen" </c:if> >
-                    <table style="width:100%">
-                        <tr>
-                            <td>
-                                <div style="display: inline-block; vertical-align: top;">
-                                    <a href = "/items/show/${item.id}">
-                                        <img src="<c:url value="/files/${item.id}/${item.itemImage}" />" border=0 height=60 width=100 />
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div style="display: inline-block">
-                                    Id: ${item.id}, MNR: ${item.mnr}, Name: ${item.name}, Active: ${item.active}
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </li>
-            </c:forEach><br>
+            <div class="collapse" id="itemsCollapse${varStatus.index}">
+                <c:forEach items="${items}" var = "item">
+                    <li class="list-group-item"  <c:if test="${item.active eq 'true'}"> style="background: lightgreen" </c:if> >
+                        <table style="width:100%">
+                            <tr>
+                                <td>
+                                    <div style="display: inline-block; vertical-align: top;">
+                                        <a href = "/items/show/${item.id}">
+                                            <img src="<c:url value="/files/${item.id}/${item.itemImage}" />" border=0 height=60 width=100 />
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="display: inline-block">
+                                        Id: ${item.id}, MNR: ${item.mnr}, Name: ${item.name}, Active: ${item.active}
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </li>
+                </c:forEach><br>
+            </div>
         </div>
     </c:forEach>
     <br>
