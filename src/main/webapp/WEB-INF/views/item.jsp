@@ -21,32 +21,56 @@
 <body>
 
 <%@include file="header.jspf" %>
-
-<div class = "container">
-    <%--<img src="http://lorempixel.com/256/256/transport" class = "rounded float-right" alt="...">--%>
-        <img alt="image"  src="<c:url value="/files/${item.id}/${item.itemImage}" />"
-             class = "rounded float-right" alt="..." style="height: 256px; width:360px">
-    <div class="container" id="qrcode1"></div><br>
-</div>
-
 <div class="container">
-    links:
-    <div class="container">
-        <a href="https://www.baeldung.com/spring-mvc-static-resources"> Help for attachments of static resources</a>
-    </div>
+    <div class="form-row">
+        <div class = "form-group col-md-4">
+            <a href="/items/uploadFiles/${item.id}">
+                <img alt="image" src="<c:url value="/files/${item.id}/${item.itemImage}"/>"
+                 class = "rounded" alt="..." style="height: 16em; width:20em">
+            </a>
+        </div>
 
-    <div class="container">
-        <a href="/items/uploadFiles/${item.id}">Add photo</a>
     </div>
 </div>
-<br>
-
 <!-- Todo: czy jest done azeby tam zamieszczac komentarze jak cos zostalo zrobione np liniki zewnetrzne -->
 
 <!-- Item field -->
 
-<div class="container" id = "stationList">
-    <form:form method="post" modelAttribute="item">
+<div class="container">
+    <form>
+        <fieldset disabled>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="id">numer materialowy</label>
+                <input type="text" class="form-control" id="id" value="${item.mnr}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="mnr">numer seryjny</label>
+                <input type="text" class="form-control" id="mnr" value="${item.sn}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name">nazwa</label>
+            <input type="text" class="form-control" id="name" value="${item.name}">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="customer">Klient</label>
+                <input type="text" class="form-control" id="customer" value="${item.customer}">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="customerNo">Numer Klienta</label>
+                <input type="text" class="form-control" id="customerNo" value="${item.customer}">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="customerCity">Miasto</label>
+                <input type="text" class="form-control" id="customerCity" value="${item.customer}">
+            </div>
+        </div>
+        </fieldset>
+    </form>
+
+<%--    <form:form method="post" modelAttribute="item">
         <label for="id">Item Id:</label>
         <form:input path="id" class="form-control" value="${item.id}" id="id" disabled="true"/><br>
         Name:
@@ -65,22 +89,10 @@
                          class="form-control" id="station_id"/>
         </div>
         <input type="submit" value="Save" />
-    </form:form>
-    <form:form method="post" modelAttribute="item">
-        <form:input type = "hidden" path="id" value="${item.id}"/>
-        <form:input type = "hidden" path="name" value="${item.name}" />
-        <form:input type = "hidden" path="mnr" value="${item.mnr}" />
-        <form:input type = "hidden" path="sn" value="${item.sn}" />
-        <form:input type = "hidden" path="customer" value="${item.customer}" />
-        <form:input type = "hidden" path="itemImage" value="${item.itemImage}"/>
-        <form:input type = "hidden" path="station.id"  value="${item.station.id + 1}"/>
-        <input class="btn btn-primary"  type="submit" value="${stations[item.station.id].name}" aria-disabled="false"/>
-    </form:form>
-    <p>
-        dodac tu jeszcze modala przy przechodzneiu
-        oraz zabezpieczenie przy ostatnim - po impolementacji archiwum
-    </p>
-    <form:form method="post" modelAttribute="item">
+    </form:form>--%>
+
+
+    <form:form method="post" modelAttribute="item" style="display:inline">
         <form:input type = "hidden" path="id" value="${item.id}"/>
         <form:input type = "hidden" path="name" value="${item.name}" />
         <form:input type = "hidden" path="mnr" value="${item.mnr}" />
@@ -88,15 +100,31 @@
         <form:input type = "hidden" path="customer" value="${item.customer}" />
         <form:input type = "hidden" path="itemImage" value="${item.itemImage}"/>
         <form:input type = "hidden" path="station.id"  value="${item.station.id}"/>
-        <c:if test="${item.active == true}">
+        <c:if test="${item.active eq true}">
             <form:input type = "hidden" path="active"  value="0" />
-            <input class="btn btn-primary"  type="submit" value="deactivate"/>
+            <input class="btn btn-warning"  type="submit" value="${stations[item.station.id - 1].name}"/>
         </c:if>
-        <c:if test="${item.active == false}">
+        <c:if test="${item.active eq false}">
             <form:input type = "hidden" path="active"  value="1" />
-            <input class="btn btn-primary"  type="submit" value="activate"/>
+            <input class="btn btn-success"  type="submit" value="zakonczenie"/>
         </c:if>
-        ${item.active}
+
+        przekazanie dalej:
+        <form:form method="post" modelAttribute="item" style="display:inline">
+            <form:input type = "hidden" path="id" value="${item.id}"/>
+            <form:input type = "hidden" path="name" value="${item.name}" />
+            <form:input type = "hidden" path="mnr" value="${item.mnr}" />
+            <form:input type = "hidden" path="sn" value="${item.sn}" />
+            <form:input type = "hidden" path="customer" value="${item.customer}" />
+            <form:input type = "hidden" path="itemImage" value="${item.itemImage}"/>
+            <form:input type = "hidden" path="station.id"  value="${item.station.id + 1}"/>
+            <input class="btn btn-primary"  type="submit" value="${stations[item.station.id].name}" aria-disabled="false"/>
+        </form:form>
+        <br>
+    <p>
+        dodac tu jeszcze modala przy przechodzneiu
+        oraz zabezpieczenie przy ostatnim - po impolementacji archiwum
+    </p>
 
     </form:form>
 </div>
@@ -241,7 +269,11 @@
 
 </div>--%>
 
-
+<div class="container" id="qrcode1" style="width: 20em"></div><br>
+    links:
+    <div class="container">
+        <a href="https://www.baeldung.com/spring-mvc-static-resources"> Help for attachments of static resources</a>
+    </div>
 
 
 
