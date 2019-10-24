@@ -61,7 +61,7 @@
                 role="button" aria-expanded="false" aria-controls="itemsCollapse${varStatus.index}">
                     ${stations[varStatus.index].name}
                     <%--ilość elementów: ${qty[varStatus.index]}--%>
-                        <span class="badge badge-primary badge-pill">${qty[varStatus.index]}/${qty[varStatus.index]}</span>
+                        <span class="badge badge-dark badge-pill">${qty[varStatus.index]}/${qty[varStatus.index]}</span>
             </li>
             <div class="collapse" id="itemsCollapse${varStatus.index}">
                 <c:forEach items="${items}" var = "item">

@@ -29,6 +29,9 @@
                  class = "rounded" alt="..." style="height: 16em; width:20em">
             </a>
         </div>
+        <div class="form-group col-md-4">
+            aktualnie w: ${stations[item.station.id - 1].name}
+        </div>
 
     </div>
 </div>
@@ -64,7 +67,7 @@
             </div>
             <div class="form-group col-md-2">
                 <label for="customerCity">Miasto</label>
-                <input type="text" class="form-control" id="customerCity" value="${item.customer}">
+                <input type="text" class="form-control" id="customerCity" value="${item.id}">
             </div>
         </div>
         </fieldset>
@@ -102,14 +105,14 @@
         <form:input type = "hidden" path="station.id"  value="${item.station.id}"/>
         <c:if test="${item.active eq true}">
             <form:input type = "hidden" path="active"  value="0" />
-            <input class="btn btn-warning"  type="submit" value="${stations[item.station.id - 1].name}"/>
+            <input class="btn btn-warning"  type="submit" value="zakończ: ${stations[item.station.id - 1].name}"/>
         </c:if>
         <c:if test="${item.active eq false}">
             <form:input type = "hidden" path="active"  value="1" />
-            <input class="btn btn-success"  type="submit" value="zakonczenie"/>
+            <input class="btn btn-success"  type="submit" value="aktywuj: ${stations[item.station.id - 1].name}"/>
         </c:if>
 
-        przekazanie dalej:
+
         <form:form method="post" modelAttribute="item" style="display:inline">
             <form:input type = "hidden" path="id" value="${item.id}"/>
             <form:input type = "hidden" path="name" value="${item.name}" />
@@ -118,7 +121,7 @@
             <form:input type = "hidden" path="customer" value="${item.customer}" />
             <form:input type = "hidden" path="itemImage" value="${item.itemImage}"/>
             <form:input type = "hidden" path="station.id"  value="${item.station.id + 1}"/>
-            <input class="btn btn-primary"  type="submit" value="${stations[item.station.id].name}" aria-disabled="false"/>
+            <input class="btn btn-primary"  type="submit" value="przeslij do: ${stations[item.station.id].name}" aria-disabled="false"/>
         </form:form>
         <br>
     <p>
