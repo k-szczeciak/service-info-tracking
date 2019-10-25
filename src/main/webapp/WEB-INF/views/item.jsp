@@ -111,7 +111,7 @@
             <form:input type = "hidden" path="active"  value="1" />
             <input class="btn btn-success"  type="submit" value="aktywuj: ${stations[item.station.id - 1].name}"/>
         </c:if>
-
+    </form:form>
 
         <form:form method="post" modelAttribute="item" style="display:inline">
             <form:input type = "hidden" path="id" value="${item.id}"/>
@@ -129,7 +129,7 @@
         oraz zabezpieczenie przy ostatnim - po impolementacji archiwum
     </p>
 
-    </form:form>
+
 </div>
 
 <%--<div class="container" id = "stationList">

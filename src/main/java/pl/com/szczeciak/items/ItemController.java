@@ -61,7 +61,7 @@ public class ItemController {
     }
 
     @GetMapping("/show/{id}")
-    public String showItemById(Model model, @PathVariable Long id){
+    public String showItemById(Model model, HttpSession session, @PathVariable Long id){
 
         //items
         List<Item> items= itemRepository.findAllById(id);
@@ -85,7 +85,13 @@ public class ItemController {
         Item item = itemRepository.findById((long) id);
         model.addAttribute("item", item);
 
-        return "item";
+
+        User user = (User) session.getAttribute("userSession");
+        if (user != null){
+            return "item";
+        }else{
+            return "itemView";
+        }
     }
 
     @PostMapping("/show/{id}")
