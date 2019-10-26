@@ -17,6 +17,7 @@
 
 package pl.com.szczeciak.app;
 
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,11 @@ import pl.com.szczeciak.station.StationRepository;
 import pl.com.szczeciak.user.User;
 import pl.com.szczeciak.user.UserRepository;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,18 +57,30 @@ public class initalView {
     UserRepository userRepository;
 
     @GetMapping("/")
-    public String login(HttpSession ses, Model model){
+    public String login(HttpSession session, Model model, HttpServletRequest request){
         //automatic log out
-        User user = (User)ses.getAttribute("userSession");
-        model.addAttribute("userSession", 1);
-        user = (User)ses.getAttribute("userSession");
+
+        User user = null;
+
+        user = (User)session.getAttribute("userSession");
+
+        //session.setAttribute("userSession", user);
+        if (user == null){
+
+            model.addAttribute("userSession", user);
+        }
+        user = (User)session.getAttribute("userSession");
         return "login";
     }
 
     @PostMapping("/")
-    public String login(@RequestParam String username, @RequestParam String password, Model model){
+    public String login(@RequestParam String username, @RequestParam String password, Model model, HttpServletRequest request){
+        String refer = request.getHeader("Referer");
         User user = userRepository.findByUsername(username);
         model.addAttribute("isLogged", false);
+
+
+        String url = request.getRequestURL().toString();
 
         if(user == null){
             return "login";
@@ -71,7 +88,11 @@ public class initalView {
         if (BCrypt.checkpw(password, user.getPassword())){
             model.addAttribute("userSession", user);
             model.addAttribute("isLogged", true);
-            return "redirect:/home";
+            if (!url.equals(refer)){
+                return "redirect:" + refer;
+            }else{
+                return "redirect:/home";
+            }
         }
         return "login";
     }

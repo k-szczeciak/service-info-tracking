@@ -14,13 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/docs/*", "/comments/*", "/items/*", "/operations/*", "/stations/*", "/users/*"})
+@WebFilter(urlPatterns = {"/docs/*", "/comments/*", "/items/*", "/operations/*", "/stations/*", "/users/*", "/home"})
 public class UserLoginFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession();
+
         User user = (User) session.getAttribute("userSession");
         if (user == null) {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
