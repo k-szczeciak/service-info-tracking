@@ -61,14 +61,11 @@ public class initalView {
         //automatic log out
 
         User user = null;
-
         user = (User)session.getAttribute("userSession");
+        model.addAttribute("userSession", user);
 
         //session.setAttribute("userSession", user);
-        if (user == null){
 
-            model.addAttribute("userSession", user);
-        }
         user = (User)session.getAttribute("userSession");
         return "login";
     }
@@ -76,11 +73,16 @@ public class initalView {
     @PostMapping("/")
     public String login(@RequestParam String username, @RequestParam String password, Model model, HttpServletRequest request){
         String refer = request.getHeader("Referer");
+        HttpSession session = request.getSession();
         User user = userRepository.findByUsername(username);
         model.addAttribute("isLogged", false);
 
+        String requestetUrl = null;
+        if (null != session.getAttribute("requestetUrl")){
+            requestetUrl = session.getAttribute("requestetUrl").toString();
+        }
 
-        String url = request.getRequestURL().toString();
+//        String url = request.getRequestURL().toString();
 
         if(user == null){
             return "login";
@@ -88,10 +90,17 @@ public class initalView {
         if (BCrypt.checkpw(password, user.getPassword())){
             model.addAttribute("userSession", user);
             model.addAttribute("isLogged", true);
+/*
             if (!url.equals(refer)){
                 return "redirect:" + refer;
             }else{
                 return "redirect:/home";
+            }*/
+
+            if (null != requestetUrl){
+                return "redirect:" + requestetUrl;
+            }else{
+                return "redirect: /home";
             }
         }
         return "login";
