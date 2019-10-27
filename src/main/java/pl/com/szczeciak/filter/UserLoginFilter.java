@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/docs/*", "/comments/*", "/items/*", "/operations/*", "/stations/*", "/users/*", "/home"})
+@WebFilter(urlPatterns = {"/docs/*", "/comments/*", "/items/all", "/items/add", "/items/uploadFiles", "/operations/*", "/stations/*", "/users/*", "/home"})
 public class UserLoginFilter extends GenericFilterBean {
 
     @Override

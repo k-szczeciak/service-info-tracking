@@ -85,13 +85,14 @@ public class ItemController {
         Item item = itemRepository.findById((long) id);
         model.addAttribute("item", item);
 
-
         User user = (User) session.getAttribute("userSession");
         if (user != null){
             return "item";
         }else{
             return "itemView";
         }
+
+//        return "item";
     }
 
     @PostMapping("/show/{id}")
