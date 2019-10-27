@@ -121,6 +121,7 @@
             <form:input type = "hidden" path="customer" value="${item.customer}" />
             <form:input type = "hidden" path="itemImage" value="${item.itemImage}"/>
             <form:input type = "hidden" path="station.id"  value="${item.station.id + 1}"/>
+            <form:input type = "hidden" path="active"  value="false"/>
             <input class="btn btn-primary"  type="submit" value="przeslij do: ${stations[item.station.id].name}" aria-disabled="false"/>
         </form:form>
         <br>

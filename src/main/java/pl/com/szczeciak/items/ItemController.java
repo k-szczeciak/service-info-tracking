@@ -53,6 +53,8 @@ public class ItemController {
     @Autowired
     DocRepository docRepository;
 
+    Item referenceItem;
+
     @GetMapping("/all")
     public String showAllItems(Model model){
         List<Item> items = itemRepository.findAll();
@@ -66,6 +68,7 @@ public class ItemController {
         //items
         List<Item> items= itemRepository.findAllById(id);
         model.addAttribute("items", items);
+        referenceItem = items.get(0);
 
         //operations
         List<Operation> operations = operationRepository.findAllByItem_Id(id);
@@ -91,8 +94,6 @@ public class ItemController {
         }else{
             return "itemView";
         }
-
-//        return "item";
     }
 
     @PostMapping("/show/{id}")
@@ -102,14 +103,15 @@ public class ItemController {
         itemRepository.save(item);
         User user = (User) session.getAttribute("userSession");
 
-        Operation operation = new Operation();
-        operation.setCreated(now());
-        operation.setItem(item);
-        operation.setStation(item.getStation());
-//        operation.setUser(userRepository.findById((long) 1));
-        operation.setUser(user);
-        operationRepository.save(operation);
-
+        //setting up new operation:
+        if (!referenceItem.getStation().getId().equals(item.getStation().getId())) {
+            Operation operation = new Operation();
+            operation.setCreated(now());
+            operation.setItem(item);
+            operation.setStation(item.getStation());
+            operation.setUser(user);
+            operationRepository.save(operation);
+        }
         return "redirect:" + refer;
     }
 
@@ -135,10 +137,7 @@ public class ItemController {
 
         User user = (User) session.getAttribute("userSession");
 
-
-
-
-        item.setActive(true);
+        item.setActive(false);
         itemRepository.save(item);
 
         long item_id = item.getId();
@@ -150,9 +149,6 @@ public class ItemController {
         operation.setStation(item.getStation());
         operation.setUser(user);
         operationRepository.save(operation);
-
-
-
 
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
@@ -178,9 +174,6 @@ public class ItemController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
 
         return "redirect: " + refer;
 
