@@ -141,6 +141,7 @@ public class ItemController {
         itemRepository.save(item);
 
         long item_id = item.getId();
+        String id = String.valueOf(item_id);
         // get new item id
 
         Operation operation = new Operation();
@@ -175,7 +176,8 @@ public class ItemController {
             e.printStackTrace();
         }
 
-        return "redirect: " + refer;
+//        return "redirect: " + refer;
+        return "redirect: ./show/" + id;
 
     }
 
