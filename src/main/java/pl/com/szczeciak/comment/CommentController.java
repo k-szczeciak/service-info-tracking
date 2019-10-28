@@ -45,8 +45,10 @@ public class CommentController {
     @PostMapping("/add/{item_id}")
     public String addComment(Model model, @ModelAttribute Comment comment, @PathVariable long item_id){
 
-        String result = comment.getDescription().replaceAll("\n", "<br>");
-        comment.setDescription(result);
+//        String result = comment.getDescription().replaceAll("\n", "<br>");
+//        String result = comment.getDescription().replaceAll("\\n[<br>]*", "<br>");
+//        String result = comment.getDescription().replaceAll("\\n[<br>]*", "&nbsp;");
+//        comment.setDescription(result);
         commentRepository.save(comment);
         return "redirect: ../../items/show/" + item_id;
     }
@@ -61,10 +63,12 @@ public class CommentController {
 
     @PostMapping("/edit/{id}")
     public String editComment(Model model, @ModelAttribute Comment comment){
-        String result = comment.getDescription().replace("\n", "<br>");
+//        String result = comment.getDescription().replace("\n", "<br>");
+//        String result = comment.getDescription().replaceAll("\\n[<br>]*", "<br>");
+//        String result = comment.getDescription().replaceAll("\\n[<br>]*", "&nbsp;");
         Item item = comment.getItem();
         long item_id = item.getId();
-        comment.setDescription(result);
+//        comment.setDescription(result);
         comment.setCreated(now());
         commentRepository.save(comment);
         return "redirect: ../../items/show/" + item_id;

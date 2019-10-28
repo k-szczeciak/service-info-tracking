@@ -24,12 +24,12 @@
 
 <div class="container">
     <form:form method="post" modelAttribute="comment">
-        id:
+        id komentarza:
         <form:input path="id" class="form-control" value="${id}" /><br>
-        item id:
+        id urzadzenia:
         <form:input path="item.id" class="form-control" value="${item.id}" /><br>
         Comment:
-        <form:textarea class="form-control" path="description" rows="3" value = "${description}"></form:textarea>
+        <form:textarea class="form-control" path="description" rows="30" value = "${description}"></form:textarea>
         <%--<form:input class="form-control" path="description" value = "${description}"></form:input>--%>
         <input type="submit" value="Update" />
     </form:form>

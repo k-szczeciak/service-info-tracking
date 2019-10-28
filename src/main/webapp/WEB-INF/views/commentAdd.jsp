@@ -26,8 +26,8 @@
     <form:form method="post" modelAttribute="comment">
         item id:
         <form:input path="item.id" class="form-control" value="${item.id}" /><br>
-        New Comment:
-        <form:textarea class="form-control" path="description" rows="3"></form:textarea>
+        Komentarz:
+        <form:textarea class="form-control" path="description" rows="30"></form:textarea>
         <input type="submit" value="Save" />
     </form:form>
 </div>

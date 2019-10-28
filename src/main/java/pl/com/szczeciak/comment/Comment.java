@@ -4,6 +4,7 @@ import pl.com.szczeciak.items.Item;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 /*
@@ -19,6 +20,7 @@ public class Comment {
     private Long id;
 
     @NotNull
+    @Column(length = 65535, columnDefinition = "text")
     private String description;
 
     @ManyToOne
