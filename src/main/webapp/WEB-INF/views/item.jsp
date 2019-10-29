@@ -191,7 +191,7 @@
             <c:forEach items="${comments}" var="comment" varStatus="theCount">
                 <tr>
                     <td scope="row">${comment.created}</td>
-                    <td scope="row" style="text-align: left">${comment.description}</td>
+                    <td scope="row" style="text-align: left; word-break: break-all">${comment.description}</td>
                     <td scope="row"><a href="/comments/edit/${comment.id}" >edit</a></td>
                 </tr>
             </c:forEach>

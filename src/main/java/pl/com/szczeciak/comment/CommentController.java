@@ -21,7 +21,6 @@ public class CommentController {
     @Autowired
     ItemRepository itemRepository;
 
-
     @GetMapping("/all")
     public String showAllComments(Model model){
         List<Comment> comments = commentRepository.findAll();
@@ -73,9 +72,5 @@ public class CommentController {
         commentRepository.save(comment);
         return "redirect: ../../items/show/" + item_id;
     }
-
-
-
-
 
 }
