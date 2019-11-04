@@ -32,7 +32,39 @@
                    aria-label="Search">
         </form>
     </div>
-    querry: ${query}
+
+
+    <div style="width: 80%" class = "container">
+        <h3>Lista urządzeń</h3>
+
+        <table class="table table-responsive table-hover">
+            <head>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">mnr</th>
+                    <th scope="col">fd</th>
+                    <th scope="col">station id</th>
+                    <th scope="col">image</th>
+                    <th scope="col">...</th>
+                </tr>
+            </head>
+
+            <tbody id="myTable">
+            <c:forEach items="${items}" var="item" varStatus="theCount">
+                <tr>
+                    <td scope="row">${item.id}</td>
+                    <td scope="row">${item.name}</td>
+                    <td scope="row">${item.mnr}</td>
+                    <td scope="row">${item.fd}</td>
+                    <td scope="row">${item.station.id}</td>
+                    <td scope="row"><img src="<c:url value="/files/${item.id}/${item.itemImage}" />" border=3 height=100 width=160 /> </td>
+                    <td scope="row"><a href = "/items/show/${item.id}"> View </a></td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 
 </div>
 

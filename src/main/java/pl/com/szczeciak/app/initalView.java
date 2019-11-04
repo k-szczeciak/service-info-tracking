@@ -140,7 +140,11 @@ public class initalView {
         model.addAttribute("query", query);
 
         List<Item> items = itemRepository.findAllByMnr(query);
+        if (items.isEmpty()){
+            items = itemRepository.findAllBySn(query);
+        }
         model.addAttribute("items", items);
+        //next: search by sn and add list
 
         return "search";
     }
