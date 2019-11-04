@@ -22,10 +22,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import pl.com.szczeciak.items.Item;
 import pl.com.szczeciak.items.ItemRepository;
 import pl.com.szczeciak.station.Station;
@@ -130,6 +127,22 @@ public class initalView {
         model.addAttribute("qty", quantities);
 
         return "home";
+    }
+
+    /*@GetMapping("/search")
+    public String searchPage(Model model){
+
+        return "search";
+    }*/
+
+    @GetMapping("/search")
+    public String searchPage(Model model, @RequestParam String query){
+        model.addAttribute("query", query);
+
+        List<Item> items = itemRepository.findAllByMnr(query);
+        model.addAttribute("items", items);
+
+        return "search";
     }
 
 }
