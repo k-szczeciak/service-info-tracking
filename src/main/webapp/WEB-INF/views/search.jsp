@@ -28,14 +28,14 @@
         <!-- Search form -->
         <form class="form-inline">
             <i class="fas fa-search" aria-hidden="true"></i>
-            <input class="form-control form-control-sm ml-3 w-75" name="query" type="text" placeholder="Numer materiałowy lub numer seryjny"
+            <input class="form-control form-control-sm ml-3 w-75 rounded-pill" name="query" type="text" placeholder="Numer materiałowy lub numer seryjny"
                    aria-label="Search">
         </form>
     </div>
 
-
     <div style="width: 80%" class = "container">
-        <h3>Lista urządzeń</h3>
+
+        <h3>Lista urządzeń: ${results}</h3>
 
         <table class="table table-responsive table-hover">
             <head>
@@ -66,6 +66,9 @@
         </table>
     </div>
 
+</div>
+<div class="container">
+    <a href="login" >zaloguj</a>
 </div>
 
 

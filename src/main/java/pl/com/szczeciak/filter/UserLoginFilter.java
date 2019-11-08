@@ -30,7 +30,7 @@ public class UserLoginFilter extends GenericFilterBean {
         User user = (User) session.getAttribute("userSession");
         if (user == null) {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
-            httpResponse.sendRedirect("/");
+            httpResponse.sendRedirect("/login");
         } else {
             chain.doFilter(request, response);
         }

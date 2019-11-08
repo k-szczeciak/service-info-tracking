@@ -21,6 +21,11 @@
 
 <%@include file="header.jspf" %>
 
+<form class="form-inline">
+    <i class="fas fa-search" aria-hidden="true"></i>
+    <input class="form-control form-control-sm ml-3 w-75 rounded-pill" name="query" type="text" placeholder="Numer materiałowy lub numer seryjny"
+           aria-label="Search">
+</form>
 
 <%--<div style="width: 80%" class="container">
     Stations:

@@ -35,10 +35,7 @@ import javax.servlet.http.HttpSession;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @SessionAttributes("userSession")
@@ -53,7 +50,7 @@ public class initalView {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/")
+    @GetMapping("/login")
     public String login(HttpSession session, Model model, HttpServletRequest request){
         //automatic log out
 
@@ -67,7 +64,7 @@ public class initalView {
         return "login";
     }
 
-    @PostMapping("/")
+    @PostMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password, Model model, HttpServletRequest request){
         String refer = request.getHeader("Referer");
         HttpSession session = request.getSession();
@@ -129,21 +126,27 @@ public class initalView {
         return "home";
     }
 
-    /*@GetMapping("/search")
-    public String searchPage(Model model){
+/*
+    @GetMapping("/")
+    public String searchPageInit(Model model){
 
         return "search";
-    }*/
+    }
+*/
 
-    @GetMapping("/search")
-    public String searchPage(Model model, @RequestParam String query){
+    @GetMapping("/")
+    public String searchPage(Model model, @RequestParam(required = false)String query){
         model.addAttribute("query", query);
-
+        String results = "no results";
         List<Item> items = itemRepository.findAllByMnr(query);
         if (items.isEmpty()){
             items = itemRepository.findAllBySn(query);
         }
-        model.addAttribute("items", items);
+        if (!items.isEmpty()){
+            model.addAttribute("items", items);
+            results = "wyniki:";
+        }
+        model.addAttribute("results", results);
         //next: search by sn and add list
 
         return "search";
