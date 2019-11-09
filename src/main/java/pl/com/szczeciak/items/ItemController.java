@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.time.LocalDateTime.now;
@@ -234,6 +235,11 @@ public class ItemController {
     }
 
 
+    @ModelAttribute("stations")
+    List<Station> getStations() {
+        List<Station> stations = stationRepository.findAll();
+        return stations;
+    }
 
     /*
     * Todo:

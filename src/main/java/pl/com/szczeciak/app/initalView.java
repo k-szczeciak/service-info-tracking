@@ -109,8 +109,6 @@ public class initalView {
 
         Map<Integer, Integer> quantities = new HashMap<>();
 
-
-
         //todo przerobic wg metdoy pokazanej przez Marcina
         //todo ilosci zapytania do bazy - moze tak bedzie lepiej
         for (int i = 1; i < stations.size()+1; i++) {

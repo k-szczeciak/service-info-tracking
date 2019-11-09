@@ -62,6 +62,17 @@ public class StationController {
         return "redirect: ../show/" + station_id;
     }
 
+    @GetMapping("/show/{id}")
+    public String showStation(Model model, @PathVariable long id){
+        Station station = stationRepository.findStationById(id);
+        model.addAttribute("station", station);
+
+        List<Item> items = itemRepository.findAllByStationId(id);
+        model.addAttribute("items", items);
+
+        return "station";
+    }
+
 /*
     @ModelAttribute("stations")
     public List<Station> getUsers() {

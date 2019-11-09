@@ -38,12 +38,14 @@
 
         <tbody id="myTable">
             <c:forEach items="${stations}" var="station" varStatus="theCount">
-                <tr>
-                    <td scope="row">${station.id}</td>
-                    <td scope="row">${station.name}</td>
-                    <td scope="row">${station.localization}</td>
-                    <td scope="row">${station.capacity}</td>
-                </tr>
+                <a  href="/stations/show/${station.id}">
+                    <tr>
+                        <td scope="row">${station.id}</td>
+                        <td scope="row">${station.name}</td>
+                        <td scope="row">${station.localization}</td>
+                        <td scope="row">${station.capacity}</td>
+                    </tr>
+                </a>
             </c:forEach>
         </tbody>
     </table>

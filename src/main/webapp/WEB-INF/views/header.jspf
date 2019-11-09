@@ -31,7 +31,7 @@
                         <a class="dropdown-item" href="/stations/all">All Stations</a>
                         <a class="dropdown-item" href="/stations/add">Add Station</a>
                         <c:forEach items="${stations}" var="station" varStatus="theCount">
-                            <a class="dropdown-item" href="#">${station.name}</a>
+                            <a class="dropdown-item" href="/stations/show/${station.id}">${station.name}</a>
                         </c:forEach>
                     </div>
                 </li>
