@@ -8,6 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.com.szczeciak.items.Item;
 import pl.com.szczeciak.items.ItemRepository;
+import pl.com.szczeciak.station.Station;
+import pl.com.szczeciak.station.StationRepository;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -32,6 +34,9 @@ public class DocController {
 
     @Autowired
     ItemRepository itemRepository;
+
+    @Autowired
+    StationRepository stationRepository;
 
     @GetMapping("/all")
     public String showAllDocs(Model model){
@@ -63,15 +68,15 @@ public class DocController {
 
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
-            Path pathDir = Paths.get(UPLOADED_FOLDER + "/" + Long.toString(item_id) + "/");
-            Path path = Paths.get(UPLOADED_FOLDER + "/" + Long.toString(item_id) + "/" + file.getOriginalFilename());
+            Path pathDir = Paths.get(UPLOADED_FOLDER + "/" + item_id + "/");
+            Path path = Paths.get(UPLOADED_FOLDER + "/" + item_id + "/" + file.getOriginalFilename());
             if (!Files.exists(pathDir)){
                 Files.createDirectory(pathDir);
             }
             int i = 0;
             while(Files.exists(path)){
                 i++;
-                path = Paths.get(UPLOADED_FOLDER + "/" + Long.toString(item_id) + "/" + Integer.toString(i) +
+                path = Paths.get(UPLOADED_FOLDER + "/" + item_id + "/" + i +
                         "_" + file.getOriginalFilename());
             }
             Files.write(path, bytes);
@@ -90,7 +95,12 @@ public class DocController {
         }
 
         return "redirect: ../../items/show/" + item_id;
+    }
 
+    @ModelAttribute("stations")
+    List<Station> getStations() {
+        List<Station> stations = stationRepository.findAll();
+        return stations;
     }
 
 }

@@ -73,6 +73,11 @@ public class StationController {
         return "station";
     }
 
+    @ModelAttribute("stations")
+    List<Station> getStations() {
+        List<Station> stations = stationRepository.findAll();
+        return stations;
+    }
 /*
     @ModelAttribute("stations")
     public List<Station> getUsers() {

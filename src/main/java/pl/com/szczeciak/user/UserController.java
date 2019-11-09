@@ -6,6 +6,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.com.szczeciak.station.Station;
+import pl.com.szczeciak.station.StationRepository;
 
 import javax.mail.Message;
 import java.util.List;
@@ -22,6 +24,9 @@ public class UserController {
 
     @Autowired
     EmailServiceImpl emailService;
+
+    @Autowired
+    StationRepository stationRepository;
 
 
     @GetMapping("/all")
@@ -59,5 +64,11 @@ public class UserController {
         user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         userRepository.save(user);
         return "userList";
+    }
+
+    @ModelAttribute("stations")
+    List<Station> getStations() {
+        List<Station> stations = stationRepository.findAll();
+        return stations;
     }
 }

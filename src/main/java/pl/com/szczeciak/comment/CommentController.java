@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.com.szczeciak.items.Item;
 import pl.com.szczeciak.items.ItemRepository;
+import pl.com.szczeciak.station.Station;
+import pl.com.szczeciak.station.StationRepository;
 
 import java.util.List;
 
@@ -20,6 +22,9 @@ public class CommentController {
 
     @Autowired
     ItemRepository itemRepository;
+
+    @Autowired
+    StationRepository stationRepository;
 
     @GetMapping("/all")
     public String showAllComments(Model model){
@@ -71,6 +76,12 @@ public class CommentController {
         comment.setCreated(now());
         commentRepository.save(comment);
         return "redirect: ../../items/show/" + item_id;
+    }
+
+    @ModelAttribute("stations")
+    List<Station> getStations() {
+        List<Station> stations = stationRepository.findAll();
+        return stations;
     }
 
 }
