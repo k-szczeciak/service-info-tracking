@@ -38,14 +38,12 @@
 
         <tbody id="myTable">
             <c:forEach items="${stations}" var="station" varStatus="theCount">
-                <a  href="/stations/show/${station.id}">
-                    <tr>
+                    <tr class="table-raw" data-href="/stations/show/${station.id}">
                         <td scope="row">${station.id}</td>
                         <td scope="row">${station.name}</td>
                         <td scope="row">${station.localization}</td>
-                        <td scope="row">${station.capacity}</td>
+                        <td scope="row"><a href="/stations/show/${station.id}" class="stretched-link">${station.capacity}</a></td>
                     </tr>
-                </a>
             </c:forEach>
         </tbody>
     </table>

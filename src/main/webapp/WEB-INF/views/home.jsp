@@ -75,7 +75,7 @@
                             <tr>
                                 <td>
                                     <div style="display: inline-block; vertical-align: top;">
-                                        <a href = "/items/show/${item.id}">
+                                        <a href = "/items/show/${item.id}" class="stretched-link">
                                             <img src="<c:url value="/files/${item.id}/${item.itemImage}" />" border=0 height=60 width=100 />
                                         </a>
                                     </div>

@@ -48,7 +48,7 @@
                         <td scope="row">${item.fd}</td>
                         <td scope="row">${item.station.id}</td>
                         <td scope="row"><img src="<c:url value="/files/${item.id}/${item.itemImage}" />" border=3 height=100 width=160 /> </td>
-                        <td scope="row"><a href = "/items/show/${item.id}"> View </a></td>
+                        <td scope="row"><a href = "/items/show/${item.id}" class="stretched-link"> View </a></td>
                     </tr>
             </c:forEach>
         </tbody>
